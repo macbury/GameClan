@@ -4,15 +4,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>App</title>
+	<title>GameClan</title>
 	<meta name="viewport" content="width=900" />
-
-	<%= stylesheet_link_tag 'formtastic', 'formtastic_changes' %>
+	<%= stylesheet_link_tag 'formtastic', 'formtastic_changes', 'ui', 'colorpicker' %>
 	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
-	<%= javascript_include_tag 'jquery.min.js', 'rails', 'application.js' %>
-
+	<%= javascript_include_tag 'jquery.min.js', 'rails', 'colorpicker', 'application' %>
+	<% if !@guild.nil? && !@guild.new_record? %>
+		<style type="text/css" media="screen">
+			body { 
+				background-image: url('<%= @guild.background.url %>') !important; 
+				background-color: #<%= @guild.background_color %> !important; 
+			}
+		</style>
+	<% end %>
 </head>
 <body>
-	<%= yield %>
+	<div class="top reset" >
+		<ul class="reset">
+			<% if !@guild.nil? && !@guild.new_record? %>
+			<li><a href="#">Kokpit</a></li>
+			<li><a href="#">Forum</a></li>
+			<li><a href="#">Multimedia</a></li>
+			<li><a href="#">Członkowie</a></li>
+			<li><a href="#">Kalendarz</a></li>
+			<% if permitted_to? :edit, @guild %>
+				<li><%= link_to 'Ustawienia', edit_guild_path(@guild) %></li>
+			<% end %>
+			<% end %>
+			<% if logged_in? %>
+				<li class="right"><%= link_to 'Wyloguj', logout_path %></li>
+				<li class="right"><a href="#">Profil</a></li>
+			<% else %>
+				<li class="right"><%= link_to 'Zaloguj się', login_path %></li>
+				<li class="right"><%= link_to 'Zarejestruj się', register_path %></li>
+			<% end %>
+		</ul>
+	</div>
+	
+	<div class="wrapper">
+		<%- flash.each do |name, msg| -%>
+	    <%= content_tag :div, msg, :class => "flash_#{name}" %>
+	  <%- end -%>
+
+		<%= yield %>
+		<div class="clear"></div>
+	</div>
 </body>
 </html>

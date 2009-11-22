@@ -1,0 +1,59 @@
+<div class="content right">
+	<div class="box">
+		<div>
+			<ul class="tabs reset four_columns">
+				<li><a href="#informacje" class="selected">Informacje</a></li>
+				<li><a href="#moderatorzy">Moderatorzy</a></li>
+				<li><a href="#skorka">Zaawansowane</a></li>
+				<li><a href="#wyglad">Wygląd</a></li>
+			</ul>
+
+			<% semantic_form_for @guild, :html => { :multipart => true, :id => 'informacje' } do |f| %>
+				<% f.inputs do %>
+					<%= f.input :name %>
+					<%= f.input :game, :hint => "np. World of Warcraft, Counter Strike, Halo itp." %>
+					<%= f.input :server, :hint => "adres www lub ip" %>
+					<%= f.input :typ, :as => :select, :collection => [["Klan", GT_TEAM], ["Gildia", GT_GUILD]], :include_blank => false %>
+					<%= f.input :about, :required => false %>
+					<%= f.input :logo, :hint => '(maksymalna wielkość pliku: 1MB, formaty: jpg, png )' %>
+				<% end %>
+				<div class="text_right">
+					<div class="button special">
+						<%= f.submit 'Zapisz' %>
+					</div>
+				</div>
+			<% end %>
+			
+			<% semantic_form_for @guild, :html => { :multipart => true, :id => 'wyglad', :style=> 'display:none' } do |f| %>
+				<% f.inputs do %>
+					<%= f.input :theme, :as => :select, :collection => THEMES.map { |k,v| [k,k.parameterize] }, :required => false %>
+					<% unless @guild.background.nil? %>
+						<div class="text_center">
+							<%= image_tag @guild.background.url(:thumb) %>
+						</div>
+					<% end %>
+					<%= f.input :background, :hint => '(maksymalna wielkość pliku: 1MB, formaty: jpg, png)', :required => false %>
+					<%= f.input :background_color, :required => false %>
+				<% end %>
+				<div class="text_right">
+					<div class="button special">
+						<%= f.submit 'Ustaw' %>
+					</div>
+					<div class="button white">
+						<%= link_to 'Anuluj', @guild %>
+					</div>
+				</div>
+			<% end %>
+
+		</div>
+	</div>
+</div>
+<style type="text/css" media="screen">
+	/* THEMES */
+	<% THEMES.each do |name, values| %>
+		<%= ".#{name.parameterize}" %> {
+			background-image: url('/guild_assets/backgrounds/themes/<%= values['background_image'] %>') !important; 
+			background-color: #<%= values['background_color']%> !important;
+		}
+	<% end %>
+</style>

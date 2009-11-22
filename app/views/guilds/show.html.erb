@@ -1,0 +1,77 @@
+<div class="sidebar">
+	<div class="clan_logo" style="background-image: url('<%= @guild.logo.url %>')"></div>
+	<div class="box">
+		<ul class="tabs">
+			<li>
+				<a href="#players" class="selected" id="players_count">Informacje</a>
+			</li>
+			<li>
+				<a href="#process" id="process_count">Członkowie</a>
+			</li>
+		</ul>
+		
+		<dl>
+			<dt>Nazwa:</dt>
+			<dd><%= @guild.name %></dd>
+			<dt>Gra:</dt>
+			<dd><%= @guild.game %></dd>
+			<dt>Serwer:</dt>
+			<dd><%= link_to @guild.server, @guild.server %></dd>
+			<% unless @guild.about.empty? %>
+			<dt>O <%= @guild.typ == GT_TEAM ? 'klanie' : 'gildii' %>:</dt>
+			<dd>
+				<%= simple_format @guild.about %>
+			</dd>
+			<% end %>
+		</dl>
+	</div>
+</div>
+<div class="content">
+	
+	<div class="box">
+		<div>
+			<h2>Ostatnie posty na forum</h2>
+			<table class="forum">
+				<thead>
+					<tr>
+						<th>Wątek</th>
+						<th>Odpowiedzi</th>
+						<th>Ostatni post</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td><a href="#">Zasady awansu / do korekty</a></td>
+						<td>28</td>
+						<td>
+							2009-10-06, 22:44<br/>
+							<a href="#">Rika</a>
+						</td>
+					</tr>
+					<tr>
+						<td><a href="#">Regulamin gildii / do korekty</a></td>
+						<td>18</td>
+						<td>
+							2009-10-06, 22:44<br/>
+							<a href="#">Rika</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="button white"><a href="/index.php">Idź na forum</a></div>
+		</div>
+	</div>
+	
+	<div class="box">
+		<div>
+			<h2>Ostatnio dodane multimedia</h2>
+		</div>
+	</div>
+	
+	<div class="box">
+		<div>
+			<h2>Zbliżające się wydarzenia</h2>
+		</div>
+	</div>
+	
+</div>

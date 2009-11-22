@@ -1,0 +1,39 @@
+'World Of Warcraft Undead':
+  background_image: "1947_bg.jpg"
+  background_color: "060512"
+
+'World Of Warcraft Tauren':
+  background_image: "1948_bg.jpg"
+  background_color: "1D0407"
+
+'World Of Warcraft Warlock':
+  background_image: "1950_bg.jpg"
+  background_color: "040E1F"
+
+'World Of Warcraft Unbroken':
+  background_image: "1957_bg.jpg"
+  background_color: "100B18" 
+
+'World Of Warcraft Blood Elf':
+  background_image: "1951_bg.jpg"
+  background_color: "000000" 
+
+'World Of Warcraft Draenei':
+  background_image: "1952_bg.jpg"
+  background_color: "140A03" 
+
+'World Of Warcraft Night Elf':
+  background_image: "1946_bg.jpg"
+  background_color: "000000"
+
+'World Of Warcraft Naxxramas':
+  background_image: "1945_bg.jpg"
+  background_color: "000000"
+
+'World Of Warcraft Rogue':
+  background_image: 1942_bg.jpg
+  background_color: "000000"
+
+'Halo':
+  background_image: "2499_bg.jpg"
+  background_color: "000000"

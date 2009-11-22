@@ -1,4 +1,17 @@
-<% title "New User" %>
+<fieldset>
+	<legend>Rejestracja:</legend>
+<% semantic_form_for @user do |f| %>
+	<% f.inputs do %>
+		<%= f.input :login %>
+		<%= f.input :email %>
+		<%= f.input :password %>
+		<%= f.input :password_confirmation %>
+	<% end %>
 
-<%= render :partial => 'form' %>
-
+  <div style="text-align: right">
+  	<div class="button">
+  		<%= f.submit "Utwórz konto" %>
+  	</div>
+  </div>
+<% end %>
+</fieldset>

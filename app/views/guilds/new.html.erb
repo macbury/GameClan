@@ -1,0 +1,29 @@
+<div class="content">
+	<div class="box">
+		<div>
+			<fieldset>
+				<legend>Nowa gildia/klan</legend>
+				<% semantic_form_for @guild do |f| %>
+					<% f.inputs do %>
+						<%= f.input :name %>
+						<%= f.input :game, :hint => "np. World of Warcraft, Counter Strike, Halo itp." %>
+						<%= f.input :server, :hint => "adres www lub ip" %>
+						<%= f.input :about, :required => false %>
+						<%= f.input :typ, :as => :select, :collection => [["Klan", GT_TEAM], ["Gildia", GT_GUILD]], :include_blank => false %>
+						
+					<% end %>
+					<p>
+						<div class="button special">
+							<%= f.submit 'Dodaj' %>
+						</div>
+						 lub 
+						<div class="button white">
+							<%= link_to 'Anuluj', guilds_path %>
+						</div>
+					</p>
+				<% end %>
+			</fieldset>
+
+		</div>
+	</div>
+</div>

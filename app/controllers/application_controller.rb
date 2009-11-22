@@ -10,8 +10,19 @@ class ApplicationController < ActionController::Base
   helper_method :current_user_session, :current_user, :logged_in?, :admin?, :own?
   
   before_filter :staging_authentication
-  
+  before_filter { |c| Authorization.current_user = c.current_user }
+
+  def current_user
+    @current_user ||= self.current_user_session && self.current_user_session.user
+    return @current_user
+  end
+
   protected
+
+  def permission_denied
+    flash[:error] = "Nie masz wystarczających uprawnień aby móc odwiedzić tą stronę"
+    redirect_to root_url
+  end
 
   def staging_authentication
     if ENV['RAILS_ENV'] == 'staging'
@@ -43,24 +54,11 @@ class ApplicationController < ActionController::Base
     @current_user_session ||= UserSession.find
     return @current_user_session
   end
-  
-  def current_user
-    @current_user ||= self.current_user_session && self.current_user_session.user
-    return @current_user
-  end
 
   def logged_in?
     !self.current_user.nil?
   end
-  
-  def admin?
-    logged_in? && self.current_user.admin?
-  end
-  
-  def own?(object)
-    logged_in? && self.current_user.own?(object)
-  end
-  
+
   def store_location
     session[:return_to] = request.request_uri
   end
@@ -81,12 +79,6 @@ class ApplicationController < ActionController::Base
         format.js { render :js => "window.location = #{login_path.inspect};" }
       end
 
-    end
-  end
-  
-  def admin_required
-    unless logged_in? && self.current_user.admin?
-      render :file => "#{RAILS_ROOT}/public/422.html", :status => 422
     end
   end
 end

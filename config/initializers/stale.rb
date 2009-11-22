@@ -1,0 +1,2 @@
+GT_TEAM = 0
+GT_GUILD = 1
