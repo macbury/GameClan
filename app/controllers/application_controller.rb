@@ -59,6 +59,10 @@ class ApplicationController < ActionController::Base
     !self.current_user.nil?
   end
 
+  def own?(obj)
+    logged_in? && self.current_user.own?(obj)
+  end
+
   def store_location
     session[:return_to] = request.request_uri
   end

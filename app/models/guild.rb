@@ -1,13 +1,15 @@
 class Guild < ActiveRecord::Base
   has_permalink :name, :update => true
   xss_terminate
+  using_access_control
   
   validates_presence_of :name, :server, :game, :background_color
   validates_length_of :name, :within => 3..34
   validates_length_of :server, :within => 3..255
   validates_length_of :game, :within => 3..255
   validates_length_of :about, :maximum => 512
-  
+  validates_length_of :guild_join_text, :within => 3..512
+    
   validates_uniqueness_of :name
   validates_format_of :background_color, :with => /[a-fA-F0-9]{1,6}/i
   
@@ -15,7 +17,14 @@ class Guild < ActiveRecord::Base
   
   attr_accessor :theme
   
+  has_many :memberships, :dependent => :destroy
+  has_many :members, :through => :memberships, :source => :user, :conditions => [' memberships.accepted = ? ', true]
+  has_many :all_members, :through => :memberships, :source => :user
+  
+  has_many :forums, :dependent => :destroy
+  
   belongs_to :user
+  belongs_to :master, :class_name => "User", :foreign_key => "user_id"
   
   has_attached_file :background, :styles => { :thumb => "100x100>" },
                     :url  => "/guild_assets/backgrounds/:style/:id.:extension",
@@ -34,6 +43,19 @@ class Guild < ActiveRecord::Base
   validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/png']
   
   before_save :set_theme
+  after_create :join_guild
+  
+  def join_guild
+    member = Membership.find_or_initialize_by_user_id_and_guild_id(self.user_id, self.id)
+    member.save(false)
+    member.accept!(false)
+
+    self.user.assign_role('Guild-Master')
+  end
+  
+  def isGuildMaster?(user)
+    self.user.id == user.id
+  end
   
   def set_theme
     return if self.theme.nil?
@@ -51,9 +73,5 @@ class Guild < ActiveRecord::Base
     permalink
   end
 
-  
-  def type_name
-    self.typ == GT_CLAN ? 'klanie' : 'gildii'
-  end
   
 end

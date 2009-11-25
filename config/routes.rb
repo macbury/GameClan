@@ -1,12 +1,19 @@
 ActionController::Routing::Routes.draw do |map|
-  map.resources :guilds
-
   map.resources :user_sessions
   map.resources :users
   
   map.login '/login', :controller => 'user_sessions', :action => 'new'
   map.logout '/logout', :controller => 'user_sessions', :action => 'destroy'
   map.register '/register', :controller => 'users', :action => 'new'
+  
+  map.resources :guilds do |guild|
+    guild.resources :members, :member => { :reason => :get, :accept => :get }, :collection => { :leave => :get }
+    guild.resources :forums do |forum|
+      forum.resources :topics
+    end
+  end
+  
+  map.connect '/:id', :controller => 'guilds', :action => 'show', :id => /.+/
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

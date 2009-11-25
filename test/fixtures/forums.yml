@@ -1,0 +1,15 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  guild_id: 1
+  permalink: MyString
+  description: MyString
+  position: 1
+
+two:
+  name: MyString
+  guild_id: 1
+  permalink: MyString
+  description: MyString
+  position: 1

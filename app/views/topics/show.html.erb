@@ -1,0 +1,12 @@
+<%= render :partial => "/shared/guild_sidebar" %>
+
+<div class="content">
+	<div class="box">
+		<div>
+			<h3>
+				<%= link_to "Forum", guild_forums_path(@guild) %> &#x2192; <%= link_to @forum.name, guild_forum_path(@guild, @forum) %> &#x2192; <%= @topic.title %>
+			</h3>
+			<%= RedCloth.new(@topic.body).to_html %>
+		</div>
+	</div>
+</div>

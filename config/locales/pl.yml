@@ -120,6 +120,17 @@ pl:
         background_color: "Kolor tła"
         background: "Tło"
         theme: "Skórka"
+        guild_join_text: "Dołączyć"
+      membership:
+        reason: "Treść"
+        game_nick: "Nick w grze"
+        stats_link: "Link do profilu"
+      forum:
+        name: "Nazwa"
+        description: "Opis"
+      topic:
+        title: "Tytuł"
+        body: "Treść"
       comment:
         body: "Treść"
     errors:

@@ -9,11 +9,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091122141735) do
+ActiveRecord::Schema.define(:version => 20091125205403) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "forums", :force => true do |t|
+    t.string   "name"
+    t.integer  "guild_id"
+    t.string   "permalink"
+    t.string   "description"
+    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -37,10 +47,34 @@ ActiveRecord::Schema.define(:version => 20091122141735) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "typ",                     :limit => 2, :default => 1
+    t.text     "guild_join_text",                      :default => "Napisz pokrótce, dlaczego akurat chciałbyś dołączyć do naszej gildii/klanu?"
+  end
+
+  create_table "memberships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "guild_id"
+    t.boolean  "accepted"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "reason"
+    t.string   "game_nick"
+    t.string   "stats_link"
   end
 
   create_table "roles", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.string   "permalink"
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "forum_id"
+    t.boolean  "locked",     :default => false
+    t.boolean  "sticky",     :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

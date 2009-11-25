@@ -4,11 +4,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pl">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	<title>GameClan</title>
+	<title><%= title %></title>
 	<meta name="viewport" content="width=900" />
-	<%= stylesheet_link_tag 'formtastic', 'formtastic_changes', 'ui', 'colorpicker' %>
+	<%= stylesheet_link_tag 'formtastic', 'formtastic_changes', 'ui', 'colorpicker', 'facebox' %>
 	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
-	<%= javascript_include_tag 'jquery.min.js', 'rails', 'colorpicker', 'application' %>
+	<%= javascript_include_tag 'jquery.min.js', 'rails', 'colorpicker', 'application', 'facebox' %>
 	<% if !@guild.nil? && !@guild.new_record? %>
 		<style type="text/css" media="screen">
 			body { 
@@ -22,14 +22,14 @@
 	<div class="top reset" >
 		<ul class="reset">
 			<% if !@guild.nil? && !@guild.new_record? %>
-			<li><a href="#">Kokpit</a></li>
-			<li><a href="#">Forum</a></li>
+			<li><%= link_to "Kokpit", @guild %></li>
+			<li><%= link_to "Forum", guild_forums_path(@guild) %></li>
 			<li><a href="#">Multimedia</a></li>
-			<li><a href="#">Członkowie</a></li>
+			<li><%= link_to "Członkowie", guild_members_path(@guild) %></li>
 			<li><a href="#">Kalendarz</a></li>
-			<% if permitted_to? :edit, @guild %>
-				<li><%= link_to 'Ustawienia', edit_guild_path(@guild) %></li>
-			<% end %>
+				<% if permitted_to? :change, @guild %>
+					<li><%= link_to 'Ustawienia', edit_guild_path(@guild) %></li>
+				<% end %>
 			<% end %>
 			<% if logged_in? %>
 				<li class="right"><%= link_to 'Wyloguj', logout_path %></li>

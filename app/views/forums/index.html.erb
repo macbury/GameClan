@@ -1,0 +1,48 @@
+<%= render :partial => "/shared/guild_sidebar" %>
+
+<div class="content">
+	<div class="box">
+		<div>
+			
+			<table class="forum">
+				<thead>
+					<tr>
+						<th>Forum</th>
+						<th width="150px">Ostatni wpis</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% if @forums.empty? %>
+					<tr>
+						<td colspan="2"><p class="info">Brak forum</p></td>
+					</tr>
+					<% else %>
+					<% @forums.each do |forum| %>
+					<tr>
+						<td>
+							<%= link_to forum.name, [@guild, forum], :class => 'title' %>
+							<% if permitted_to? :manage_all, forum %>
+							(
+								<%= link_to "Edytuj", edit_guild_forum_path(@guild, forum) %> | 
+								<%= link_to "Usuń", [@guild, forum], :method => :delete, :confirm => "Czy na pewno chcesz usunąć to forum?" %>
+							)
+							<% end %>
+							<%= content_tag :div, simple_format(forum.description), :class => 'desc' unless forum.description.empty? %>
+						</td>
+						<td class="text_center">
+							Brak
+						</td>
+					</tr>
+					<% end %>
+					<% end %>
+				</tbody>
+			</table>
+			
+			<% if permitted_to? :create, @guild.forums.new %>
+			<div class="button control">
+				<%= link_to 'Nowe forum', new_guild_forum_path(@guild) %>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

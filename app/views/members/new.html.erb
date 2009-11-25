@@ -1,0 +1,30 @@
+<div class="content center">
+	<div class="content">
+		<div class="box">
+			<div>
+				<fieldset>
+					<legend>Formularz zgłoszeniowy do <%= @guild.typ == GT_TEAM ? 'klanu' : 'gildii' %></legend>
+					<%= simple_format @guild.guild_join_text %>
+					<% semantic_form_for @membership, :url => guild_members_path(@guild) do |f| %>
+						<% f.inputs do %>
+							<%= f.input :reason %>
+							<%= f.input :game_nick, :required => false, :hint => "pozostaw pole puste a nick będzie taki sam jak twój login" %>
+							<%= f.input :stats_link, :required => false, :hint => "link do strony z dokładnymi statystkami twojeje postaci" %>
+						<% end %>
+					
+					<div class="text_center">
+						<div class="button special">
+							<%= f.submit 'Wyślij podanie' %>
+						</div>
+						<div class="button white">
+							<%= link_to 'Anuluj', @guild %>
+						</div>
+					</div>
+					<% end %>
+				</fieldset>
+				
+			</div>
+		</div>
+
+	</div>
+</div>

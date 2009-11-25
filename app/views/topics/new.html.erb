@@ -1,0 +1,22 @@
+<div class="content right">
+	<div class="box">
+		<div>
+			<% semantic_form_for([@guild, @forum, @topic]) do |f| %>
+				<h2><%= @topic.new_record? ? "Nowy temat" : "Edycja tematu" %></h2>
+				<% f.inputs do %>
+					<%= f.input :title %>
+					<%= f.input :body, :hint => '*strong* | # lista numerowana | * lista wypunktowana | _em_ | __italic__ | "link":http:// | bq. cytat.' %>
+				<% end %>
+				
+				<div class="text_right">
+					<div class="button special">
+						<%= f.submit 'Dodaj' %>
+					</div>
+					<div class="button white">
+						<%= link_to 'Anuluj', guild_forum_path(@guild, @forum) %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

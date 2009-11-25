@@ -1,31 +1,5 @@
-<div class="sidebar">
-	<div class="clan_logo" style="background-image: url('<%= @guild.logo.url %>')"></div>
-	<div class="box">
-		<ul class="tabs">
-			<li>
-				<a href="#players" class="selected" id="players_count">Informacje</a>
-			</li>
-			<li>
-				<a href="#process" id="process_count">Członkowie</a>
-			</li>
-		</ul>
-		
-		<dl>
-			<dt>Nazwa:</dt>
-			<dd><%= @guild.name %></dd>
-			<dt>Gra:</dt>
-			<dd><%= @guild.game %></dd>
-			<dt>Serwer:</dt>
-			<dd><%= link_to @guild.server, @guild.server %></dd>
-			<% unless @guild.about.empty? %>
-			<dt>O <%= @guild.typ == GT_TEAM ? 'klanie' : 'gildii' %>:</dt>
-			<dd>
-				<%= simple_format @guild.about %>
-			</dd>
-			<% end %>
-		</dl>
-	</div>
-</div>
+<%= render :partial => "/shared/guild_sidebar" %>
+
 <div class="content">
 	
 	<div class="box">

@@ -1,0 +1,42 @@
+<%= render :partial => "/shared/guild_sidebar" %>
+
+<div class="content">
+	<div class="box">
+		<div>
+			<h3>
+				<%= link_to "Forum", guild_forums_path(@guild) %> &#x2192; <%= @forum.name %>
+			</h3>
+			<table>
+				<thead>
+					<tr>
+						<th>Temat</th>
+						<th width="100px" class="text_center">Odpowiedzi</th>
+						<th width="150px" class="text_center">Ostatni post</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% if @topics.empty? %>
+					<tr>
+						<td colspan="3" class="info">Brak tematów</td>
+					</tr>
+					<% else %>
+						<% @topics.each do |topic| %>
+						<tr class="<%= cycle('normal', 'alt') %>">
+							<td><%= link_to topic.title, [@guild, @forum, topic] %></td>
+							<td class="text_center">0</td>
+							<td class="text_center">Brak odpowiedzi</td>
+						</tr>
+						<% end %>
+					<% end %>
+				</tbody>
+			</table>
+			<% if permitted_to? :create, @forum.topics.new %>
+			<div class="control">
+				<div class="button special">
+					<%= link_to "Nowy temat", new_guild_forum_topic_path(@guild, @forum) %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

@@ -75,11 +75,10 @@ class GuildsController < ApplicationController
   # DELETE /guilds/1
   # DELETE /guilds/1.xml
   def destroy
-
     @guild.destroy
 
     respond_to do |format|
-      format.html { redirect_to(guilds_url) }
+      format.html { redirect_to(root_path) }
       format.xml  { head :ok }
     end
   end

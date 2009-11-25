@@ -17,4 +17,10 @@ $(document).ready(function () {
 	$('#guild_theme').change(function(){ 
 		$('body').attr('class', $(this).val());
 	});
+	
+	$('a[rel*=facebox]').facebox() 
+	
+	setTimeout(function () {
+		$('.flash_notice, .flash_error').slideUp()
+	}, 10000)
 });

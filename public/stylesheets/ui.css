@@ -27,9 +27,27 @@ a:active { color: #000; }
 
 /* Flash */
 
-.flash_notice, .flash_error { padding: 5px 8px; margin-bottom: 10px; -webkit-border-radius: 5px; }
-.flash_notice { background-color: #CFC; }
-.flash_error { background-color: #FCC; }
+.flash_notice {
+	background: #A4E1A2 url('../images/icon-success.png') 20px center no-repeat;
+	color: #094808;
+	text-shadow: #C0FDE3 0px 1px 0px;
+	border: 1px solid #DDE3D7;
+}
+
+.flash_error, .flash_notice {
+	margin: 0 0 10px 0; 
+	font-size: 18px;
+	padding: 10px 60px;
+	-webkit-border-radius: 5px;
+	opacity: 0.9;
+}
+
+.flash_error {
+	background: #AF2B2B url('../images/icon-error.png') 20px center no-repeat;
+	color: #fff;
+	border: 1px solid #DA3536;
+	text-shadow: #000 0px 1px 0px;
+}
 
 
 /* Forms */
@@ -53,11 +71,11 @@ legend {
 	color: #333;
 }
 
-fieldset > h2 {
+fieldset > h2, form h2, h3 {
 	font-size: 14px;
 	padding-bottom: 5px;
 	margin-bottom: 5px;
-	border-bottom: 1px solid #ddd;
+	border-bottom: 2px solid #ddd;
 }
 
 /* TextFields */
@@ -196,13 +214,16 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 	width: 590px;
 }
 
+.wrapper > .content.center { margin-left: auto; margin-right: auto; float: none; }
 .wrapper > .content.right { margin-left: 210px; }
 
 /* Sidebar */
 
 .sidebar > div, .sidebar > img { margin-bottom: 10px; }
+.sidebar dl { margin: 5px 0; }
 .sidebar dt { font-size: 10px; margin: 2px 0; }
 .sidebar dd { margin-left: 20px; }
+.sidebar .button { width: 100%; text-align: center; }
 
 .sidebar > .clan_logo {
 	width: 200px;
@@ -268,8 +289,41 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 	padding: 5px;
 }
 
+.content > .box > div > .control { margin-top: 5px; }
+
 /* Forum */
 
-.forum {
+.wrapper table { 
+	border-collapse:collapse; 
+	border: 1px solid #ccc;
 	width: 100%;
+}
+
+td, th { 
+	font-size:11px; 
+	border-bottom:1px solid #eee; 
+	padding:5px; 
+	font-family:"Lucida Grande", Verdana, Arial, sans-serif; 
+}
+
+th { text-align:left; font-size:12px; }
+
+thead th	{ font-weight:bold; color:#666; padding:2px 5px; font-size:11px; background:#e1e1e1 url(../images/nav-bg.gif) top left repeat-x; border-left:1px solid #ddd; border-bottom:1px solid #ddd; }
+thead th:first-child { border-left:none !important; }
+thead th.optional { font-weight:normal !important; }
+tr.alt { background:#f6f6f6; }
+
+/* Fields */
+
+#guild_guild_join_text, #guild_about, #membership_reason { height: 100px; }
+
+/* Forum */
+
+.forum .title {
+	font-size: 16px;
+	font-weight: bold;
+}
+
+.forum .desc p:last-child {
+	margin-bottom: 0px;
 }

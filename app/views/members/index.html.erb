@@ -1,0 +1,51 @@
+<%= render :partial => "/shared/guild_sidebar" %>
+
+<div class="content">
+	
+	<div class="box">
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th width="16px"> </th>
+						<th>Postać</th>
+						<th width="25%">Profil</th>
+						<th width="25%">Ranga</th>
+						<th width="25%">Dołączył(a)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for member in @members %>
+					<tr class="<%= cycle('normal', 'alt') %>">
+						<td class="text_center">
+							<%= image_tag member.accepted ? "/images/icons/icon_success.gif" : "/images/icons/icon_error.gif" %>
+						</td>
+						<td><%= link_to member.game_nick, member.stats_link, :target => "_blank" %></td>
+						<td><%= link_to member.user.login, member.user %></td>
+						<% unless member.accepted %>
+						<td colspan="2" class="text_center">
+							<% if permitted_to? :accept, member %>
+								<div class="button special">
+									<%= link_to "Akceptuj", accept_guild_member_path(@guild, member) %>
+								</div>
+								<div class="button blue">
+									<%= link_to "Odrzuć", guild_member_path(@guild, member), :method => :delete, :confirm => "Czy na pewno?" %>
+								</div>
+								<div class="button white">
+									<%= link_to "Podanie", reason_guild_member_path(@guild, member), :rel => "facebox" %>
+								</div>
+							<% else %>
+								Oczekuje na akceptację
+							<% end %>
+						</td>
+						<% else %>
+						<td></td>
+						<td><%= I18n.l member.created_at.to_date %></td>
+						<% end %>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
