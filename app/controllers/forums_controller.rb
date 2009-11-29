@@ -19,7 +19,7 @@ class ForumsController < ApplicationController
   # GET /forums/1
   # GET /forums/1.xml
   def show
-    @topics = @forum.topics.all(:order=>"updated_at DESC", :include => [:user])
+    @topics = @forum.topics.paginate(:order=>"updated_at DESC", :include => [:user, :replied_by], :per_page => 10, :page => params[:page])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -81,7 +81,7 @@ class ForumsController < ApplicationController
     @forum.destroy
 
     respond_to do |format|
-      format.html { redirect_to(forums_url) }
+      format.html { redirect_to([@guild, @forum]) }
       format.xml  { head :ok }
     end
   end

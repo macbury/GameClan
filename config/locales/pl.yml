@@ -131,6 +131,8 @@ pl:
       topic:
         title: "Tytuł"
         body: "Treść"
+      post:
+        body: "Treść"
       comment:
         body: "Treść"
     errors:

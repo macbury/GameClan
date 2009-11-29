@@ -30,7 +30,14 @@
 							<%= content_tag :div, simple_format(forum.description), :class => 'desc' unless forum.description.empty? %>
 						</td>
 						<td class="text_center">
-							Brak
+							<% if forum.recent_topic.nil? %>
+								Brak
+							<% else %>
+								<small>
+									<%= link_to forum.recent_topic.title, [@guild, forum, forum.recent_topic] %>
+								</small><br />
+								<%= distance_of_time_in_words_to_now forum.recent_topic.updated_at %> temu przez <%= link_to forum.recent_topic.user.login, forum.recent_topic.user %>
+							<% end %>
 						</td>
 					</tr>
 					<% end %>

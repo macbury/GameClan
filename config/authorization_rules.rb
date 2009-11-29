@@ -1,13 +1,18 @@
 authorization do
   role :admin do
-    has_permission_on [:guilds, :members, :topic], :to => :act_as_god
+    has_permission_on [:guilds, :members, :topic, :posts, :users], :to => :act_as_god
     has_permission_on :authorization_rules, :to => :read
   end
   
   role :guest do
-    has_permission_on [:guilds, :members, :forums, :topics], :to => :view
+    has_permission_on [:guilds, :members, :forums, :topics, :posts], :to => :view
     has_permission_on [:memberships, :members], :to => [:new, :create]
     has_permission_on :guilds, :to => [:new, :create]
+    
+    has_permission_on :users, :to => [:index, :show, :new, :create]
+    has_permission_on :users, :to => :change do
+      if_attribute :id => is { user.id }
+    end
     #has_permission_on :comments, :to => [:new, :create]
     #has_permission_on :comments, :to => [:edit, :update] do
     #  if_attribute :user => is { user }
@@ -29,6 +34,10 @@ authorization do
       if_attribute :forum => { :guild => { :master => is { user } } }
     end
     
+    has_permission_on :posts, :to => :manage_all do
+      if_attribute :topic => { :forum => { :guild => { :master => is { user } } } }
+    end
+    
     has_permission_on :members, :to => [:accept,:edit, :update, :delete, :destroy, :reason, :leave] do
       if_attribute :master => is { user }
     end
@@ -42,9 +51,9 @@ authorization do
     includes :guest
     
     #:guild => { :memberships => contains { user } }
-    has_permission_on :topics, :to => [:new, :create, :show]
-    has_permission_on :topics, :to => :change do
-      includes :user => is { user }
+    has_permission_on [:topics, :posts], :to => [:new, :create, :show]
+    has_permission_on [:topics, :posts], :to => :change do
+      if_attribute :user => is { user }
     end
     has_permission_on :members, :to => :leave
   end

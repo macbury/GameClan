@@ -7,6 +7,8 @@ class Forum < ActiveRecord::Base
   validates_length_of :name, :within => 3..255
   validates_length_of :description, :within => 0..255
   
+  has_one :recent_topic, :class_name => "Topic", :order => 'updated_at DESC'
+  
   has_permalink :name, :update => true
   
   def to_param

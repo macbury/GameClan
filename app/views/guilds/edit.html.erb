@@ -7,7 +7,37 @@
 				<li><a href="#zaawansowane">Zaawansowane</a></li>
 				<li><a href="#moderatorzy">Moderatorzy</a></li>
 			</ul>
-
+			
+			<% semantic_form_for @guild, :html => { :id => 'moderatorzy', :style => "display:none" } do |f| %>
+				<table class="forum">
+					<thead>
+						<tr>
+							<th>Użytkownik</th>
+							<th width="100px" class="text_center">Moderator</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% if @guild.members.nil? %>
+							<tr>
+								<td class="info" colspan="2">Brak użytkowników</td>
+							</tr>
+						<% else %>
+							<% @guild.members.all(:order => 'login').each do |member| %>
+								<tr class="<%= cycle('normal', 'alt') %>">
+									<td><%= link_to member.login, member %></td>
+									<td class="text_center"><input type="checkbox" name="some_name" value="" id="some_name"></td>
+								</tr>
+							<% end %>
+						<% end %>
+					</tbody>
+				</table>
+				<div class="text_right">
+					<div class="button special">
+						<%= f.submit 'Zapisz' %>
+					</div>
+				</div>
+			<% end %>
+			
 			<% semantic_form_for @guild, :html => { :multipart => true, :id => 'informacje' } do |f| %>
 				<% f.inputs do %>
 					<%= f.input :name %>

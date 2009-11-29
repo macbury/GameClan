@@ -13,9 +13,14 @@ class TopicsController < ApplicationController
   end
   
   def show
+    @posts = @topic.posts.all(:order => 'created_at ASC', :include => [:user] )
+    @posts.insert(0, @topic)
+    
+    @post = @topic.posts.new
+    
     respond_to do |format|
       format.html # show.html.erb
-      format.xml  { render :xml => @topic }
+      format.xml  { render :xml => @posts }
     end
   end
 
@@ -32,7 +37,7 @@ class TopicsController < ApplicationController
 
   # GET /topics/1/edit
   def edit
-
+    render :action => "new"
   end
 
   # POST /topics
@@ -43,7 +48,7 @@ class TopicsController < ApplicationController
     
     respond_to do |format|
       if @topic.save
-        flash[:notice] = 'Temat został stworzony'
+        flash[:notice] = 'Temat został dodany'
         format.html { redirect_to([@guild, @forum, @topic]) }
         format.xml  { render :xml => @topic, :status => :created, :location => @topic }
       else
@@ -59,11 +64,11 @@ class TopicsController < ApplicationController
 
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
-        flash[:notice] = 'Topic was successfully updated.'
-        format.html { redirect_to(@topic) }
+        flash[:notice] = 'Temat został zapisany.'
+        format.html { redirect_to([@guild, @forum, @topic]) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render :action => "new" }
         format.xml  { render :xml => @topic.errors, :status => :unprocessable_entity }
       end
     end
@@ -75,7 +80,7 @@ class TopicsController < ApplicationController
     @topic.destroy
 
     respond_to do |format|
-      format.html { redirect_to(topics_url) }
+      format.html { redirect_to([@guild, @forum]) }
       format.xml  { head :ok }
     end
   end

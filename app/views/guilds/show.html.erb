@@ -4,35 +4,24 @@
 	
 	<div class="box">
 		<div>
-			<h2>Ostatnie posty na forum</h2>
 			<table class="forum">
 				<thead>
 					<tr>
-						<th>Wątek</th>
-						<th>Odpowiedzi</th>
-						<th>Ostatni post</th>
+						<th>Ostatnie tematy na forum</th>
+						<th width="100px" class="text_center">Odpowiedzi</th>
+						<th width="150px" class="text_center">Ostatni post</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td><a href="#">Zasady awansu / do korekty</a></td>
-						<td>28</td>
-						<td>
-							2009-10-06, 22:44<br/>
-							<a href="#">Rika</a>
-						</td>
-					</tr>
-					<tr>
-						<td><a href="#">Regulamin gildii / do korekty</a></td>
-						<td>18</td>
-						<td>
-							2009-10-06, 22:44<br/>
-							<a href="#">Rika</a>
-						</td>
-					</tr>
+					<% if @topics.nil? || @topics.empty? %>
+						<tr>
+							<td class="info" colspan="3">Brak tematów na forum</td>
+						</tr>
+					<% else %>
+						<%= render :partial => @topics %>
+					<% end %>
 				</tbody>
 			</table>
-			<div class="button white"><a href="/index.php">Idź na forum</a></div>
 		</div>
 	</div>
 	

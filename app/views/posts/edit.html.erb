@@ -2,10 +2,9 @@
 	<div class="box">
 		<div>
 			<fieldset>
-				<legend><%= @topic.new_record? ? "Nowy temat" : "Edycja tematu" %></legend>
-				<% semantic_form_for([@guild, @forum, @topic]) do |f| %>
+				<legend>Odpowiedź</legend>
+				<% semantic_form_for([@guild, @forum, @topic, @post]) do |f| %>
 					<% f.inputs do %>
-						<%= f.input :title if @topic.new_record? %>
 						<%= f.input :body, :hint => '*strong* | # lista numerowana | * lista wypunktowana | _em_ | __italic__ | "link":http:// | bq. cytat.' %>
 					<% end %>
 				

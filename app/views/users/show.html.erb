@@ -1,0 +1,45 @@
+<div class="sidebar">
+	<div class="avatar_logo" style="background-image: url('<%= @user.avatar.url(:logo) %>')"></div>
+	<div class="box">
+		<dl>
+			<dt>Login:</dt>
+			<dd><%= @user.login %></dd>
+			<% unless @user.full_name.nil? || @user.full_name.empty? %>
+			<dt>Imie i nazwisko:</dt>
+			<dd><%= @user.full_name %></dd>
+			<% end %>
+			<% unless @user.www.nil? || @user.www.empty? %>
+			<dt>WWW:</dt>
+			<dd><%= link_to @user.www, @user.www %></dd>
+			<% end %>
+			<% unless @user.guild_member.nil? || @user.guild_member.empty? %>
+			<dt>Gildie/Klany:</dt>
+			<dl>
+				<% @user.guild_member.each do |guild| %>
+				<ul>
+					<li><%= link_to guild.name, guild %></li>
+				</ul>
+				<% end %>
+			</dl>
+			<% end %>
+		</dl>
+	</div>
+</div>
+<div class="content">
+	<div class="box">
+		<div>
+			<table class="forum">
+				<thead>
+					<tr>
+						<th>Ostatnie wpisy na forum</th>
+						<th width="100px" class="text_center">Odpowiedzi</th>
+						<th width="150px" class="text_center">Ostatni post</th>
+					</tr>
+				</thead>
+				<tbody>
+					<%= render :partial => @topics %>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>

@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091125205403) do
+ActiveRecord::Schema.define(:version => 20091129113359) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20091125205403) do
     t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "topics_count", :default => 0
   end
 
   create_table "guilds", :force => true do |t|
@@ -61,6 +62,21 @@ ActiveRecord::Schema.define(:version => 20091125205403) do
     t.string   "stats_link"
   end
 
+  create_table "moderatorships", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "guild_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "roles", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -73,19 +89,21 @@ ActiveRecord::Schema.define(:version => 20091125205403) do
     t.text     "body"
     t.integer  "user_id"
     t.integer  "forum_id"
-    t.boolean  "locked",     :default => false
-    t.boolean  "sticky",     :default => false
+    t.boolean  "locked",        :default => false
+    t.boolean  "sticky",        :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "posts_count",   :default => 0
+    t.integer  "replied_by_id"
   end
 
   create_table "users", :force => true do |t|
     t.string   "login"
-    t.string   "email",                            :null => false
-    t.string   "crypted_password",                 :null => false
-    t.string   "password_salt",                    :null => false
-    t.string   "persistence_token",                :null => false
-    t.integer  "login_count",       :default => 0, :null => false
+    t.string   "email",                              :null => false
+    t.string   "crypted_password",                   :null => false
+    t.string   "password_salt",                      :null => false
+    t.string   "persistence_token",                  :null => false
+    t.integer  "login_count",         :default => 0, :null => false
     t.datetime "last_request_at"
     t.datetime "last_login_at"
     t.datetime "current_login_at"
@@ -93,6 +111,14 @@ ActiveRecord::Schema.define(:version => 20091125205403) do
     t.string   "current_login_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "topics_count",        :default => 0
+    t.integer  "posts_count",         :default => 0
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
+    t.string   "full_name"
+    t.string   "www"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

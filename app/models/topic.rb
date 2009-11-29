@@ -1,6 +1,10 @@
 class Topic < ActiveRecord::Base
-  belongs_to :forum
-  belongs_to :user
+  belongs_to :forum, :counter_cache => true
+  belongs_to :user, :counter_cache => true
+  belongs_to :replied_by, :class_name => "User", :foreign_key => "replied_by_id"
+  
+  has_many :posts, :dependent => :destroy
+  has_one :recent_post, :class_name => "Post", :order => 'updated_at DESC'
   
   xss_terminate
   has_permalink :title, :update => true

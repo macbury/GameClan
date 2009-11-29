@@ -3,10 +3,34 @@
 <div class="content">
 	<div class="box">
 		<div>
-			<h3>
-				<%= link_to "Forum", guild_forums_path(@guild) %> &#x2192; <%= link_to @forum.name, guild_forum_path(@guild, @forum) %> &#x2192; <%= @topic.title %>
-			</h3>
-			<%= RedCloth.new(@topic.body).to_html %>
+			<%= link_to "Forum", guild_forums_path(@guild) %> &#x2192; <%= link_to @forum.name, guild_forum_path(@guild, @forum) %> &#x2192; <%= content_tag :b, @topic.title %>
 		</div>
 	</div>
+	
+	<div class="box">
+		<div>
+			<table class="posts wide">
+				<%= render :partial => "/topics/post", :collection => @posts %>
+			</table>
+		</div>
+	</div>
+	
+	<% if permitted_to? :create, @post %>
+	<div class="box">
+		<div>
+			<fieldset>
+				<legend>Odpowiedź</legend>
+				<% semantic_form_for [@guild, @forum, @topic, @post] do |f| %>
+					<% f.inputs do %>
+						<%= f.input :body %>
+						<div class="text_right">
+							<div class="button special">
+								<%= f.submit "Odpowiedz" %>
+							</div>
+						</div>
+					<% end %>
+				<% end %>
+		</div>
+	</div>
+	<% end %>
 </div>

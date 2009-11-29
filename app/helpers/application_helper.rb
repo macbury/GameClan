@@ -10,4 +10,8 @@ module ApplicationHelper
     end
   end
   
+  def avatar_for(user, size)
+    image_tag user.avatar.url(size)
+  end
+  
 end

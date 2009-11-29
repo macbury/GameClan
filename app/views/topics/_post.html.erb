@@ -1,0 +1,31 @@
+<tr class="post hentry">
+	<td class="author vcard">
+		<div class="date">
+			<abbr class="updated" title="<%= post.created_at.xmlschema %>">
+			<%= distance_of_time_in_words_to_now post.created_at %> temu
+			</abbr>
+		</div>
+		<%= avatar_for post.user, :forum %>
+		<span class="fn"><%= link_to truncate(post.user.login, :length => 15), post.user %></span>
+		<span class="posts">
+			<%= post.user.total_posts %> postów
+		</span>
+		<% if permitted_to? :edit, post %>
+		<p class="clear edit">
+			<% if post.class == Post %>
+				<%= link_to "Edytuj", edit_guild_forum_topic_post_path(@guild, @forum, post.topic, post) %>
+			<% else %>
+				<%= link_to "Edytuj", edit_guild_forum_topic_path(@guild, @forum, post) %>
+			<% end %>
+		</p>
+		<% end %>
+	</td>
+	<td class="body entry-content">
+		<%= RedCloth.new(post.body).to_html %>
+	</td>
+</tr>
+<% #unless post == @posts.first %>
+<tr class="spacer">
+  <td colspan="2">&nbsp;</td>
+</tr>
+<% #end %>

@@ -21,7 +21,11 @@ class Guild < ActiveRecord::Base
   has_many :members, :through => :memberships, :source => :user, :conditions => [' memberships.accepted = ? ', true]
   has_many :all_members, :through => :memberships, :source => :user
   
+  has_many :moderatorships, :dependent => :destroy
+  has_many :moderators, :through => :moderatorships
+  
   has_many :forums, :dependent => :destroy
+  has_many :topics, :through => :forums
   
   belongs_to :user
   belongs_to :master, :class_name => "User", :foreign_key => "user_id"

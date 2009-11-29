@@ -30,10 +30,13 @@
 				<% if permitted_to? :change, @guild %>
 					<li><%= link_to 'Ustawienia', edit_guild_path(@guild) %></li>
 				<% end %>
+			<% else %>
+				<li><%= link_to "Gildie", guilds_path %></li>
 			<% end %>
 			<% if logged_in? %>
 				<li class="right"><%= link_to 'Wyloguj', logout_path %></li>
-				<li class="right"><a href="#">Profil</a></li>
+				<li class="right"><%= link_to 'Profil', self.current_user %></li>
+				<li class="right"><%= link_to 'Edytuj', edit_user_path(self.current_user) %></li>
 			<% else %>
 				<li class="right"><%= link_to 'Zaloguj się', login_path %></li>
 				<li class="right"><%= link_to 'Zarejestruj się', register_path %></li>
@@ -43,8 +46,8 @@
 	
 	<div class="wrapper">
 		<%- flash.each do |name, msg| -%>
-	    <%= content_tag :div, msg, :class => "flash_#{name}" %>
-	  <%- end -%>
+			<%= content_tag :div, msg, :class => "flash_#{name}" %>
+		<%- end -%>
 
 		<%= yield %>
 		<div class="clear"></div>
