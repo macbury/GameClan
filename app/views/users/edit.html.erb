@@ -1,4 +1,19 @@
-<% title "Edit User" %>
-
-<%= render :partial => 'form' %>
-
+<div class="content right">
+	<div class="box">
+		<div>
+			<fieldset>
+				<legend>Avatar</legend>
+				<% semantic_form_for @user, :html => { :multipart => true } do |f| %>
+					<% f.inputs do %>
+						<%= f.input :avatar %>
+					<% end %>
+					<div class="text_right">
+						<div class="button">
+							<%= f.submit "Wyślij" %>
+						</div>
+					</div>
+				<% end %>
+			</fieldset>
+		</div>
+	</div>
+</div>
