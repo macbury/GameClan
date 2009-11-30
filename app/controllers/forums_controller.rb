@@ -19,7 +19,7 @@ class ForumsController < ApplicationController
   # GET /forums/1
   # GET /forums/1.xml
   def show
-    @topics = @forum.topics.paginate(:order=>"updated_at DESC", :include => [:user, :replied_by], :per_page => 10, :page => params[:page])
+    @topics = @forum.topics.paginate(:order=>"sticky DESC, updated_at DESC", :include => [:user, :replied_by], :per_page => 10, :page => params[:page])
 
     respond_to do |format|
       format.html # show.html.erb

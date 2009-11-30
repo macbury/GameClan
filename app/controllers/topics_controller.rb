@@ -77,6 +77,7 @@ class TopicsController < ApplicationController
   # DELETE /topics/1
   # DELETE /topics/1.xml
   def destroy
+    flash[:info] = "Temat został usunięty!"
     @topic.destroy
 
     respond_to do |format|

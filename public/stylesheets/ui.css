@@ -24,6 +24,7 @@ a:active { color: #000; }
 .text_right { text-align: right; }
 .clear { clear: both; }
 .info { text-align: center; color: #ddd; font-size: 28px; font-weight: bold; }
+.loader { background: transparent url('/images/ajax.gif') no-repeat center center; height: 20px; display: none; }
 
 /* Flash */
 
@@ -453,3 +454,41 @@ table.posts tr.spacer:last-child { display: none; }
   height: 1%; }
 *:first-child+html .pagination {
   overflow: hidden; }
+
+#moderatorzy { display:none; margin-top: 10px; }
+
+/* List View */
+
+.list_view {
+	height: 300px;
+	width: 200px;
+	float: left;
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	border-bottom: 1px solid #7FAEFF; 
+	border-right: 1px solid #7FAEFF; 
+	border-left: 1px solid #4478A8;
+	border-top: 1px solid #4478A8;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.list_view > li {
+	font-size: 12px;
+	height: 16px;
+	padding: 4px 5px;
+	cursor: default;
+}
+
+.list_view > .ui-selected { color: #fff; background: #357CCB; }
+
+.list_view_divider {
+	width: 154px;
+	height: 300px;
+	padding: 0 5px;
+	float: left;
+	text-align: center;
+}
+
+.list_view_divider .button { width: 100px; margin-top: 5px; }

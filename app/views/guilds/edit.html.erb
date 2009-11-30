@@ -8,35 +8,28 @@
 				<li><a href="#moderatorzy">Moderatorzy</a></li>
 			</ul>
 			
-			<% semantic_form_for @guild, :html => { :id => 'moderatorzy', :style => "display:none" } do |f| %>
-				<table class="forum">
-					<thead>
-						<tr>
-							<th>Użytkownik</th>
-							<th width="100px" class="text_center">Moderator</th>
-						</tr>
-					</thead>
-					<tbody>
-						<% if @guild.members.nil? %>
-							<tr>
-								<td class="info" colspan="2">Brak użytkowników</td>
-							</tr>
-						<% else %>
-							<% @guild.members.all(:order => 'login').each do |member| %>
-								<tr class="<%= cycle('normal', 'alt') %>">
-									<td><%= link_to member.login, member %></td>
-									<td class="text_center"><input type="checkbox" name="some_name" value="" id="some_name"></td>
-								</tr>
-							<% end %>
-						<% end %>
-					</tbody>
-				</table>
-				<div class="text_right">
-					<div class="button special">
-						<%= f.submit 'Zapisz' %>
+			<div id="moderatorzy">
+				<ul class="list_view 3-columns" id="users_list_view">
+					<% @members.each do |member| %>
+						<%= content_tag :li, member.login, :id => "user_#{member.id}" %>
+					<% end %>
+				</ul>
+				<div class="list_view_divider">
+					<div class="button white">
+						<%= link_to "&#x2190; Użytkownik", guild_moderatorship_path(:guild_id => @guild.permalink, :id => 0), :id => "to_user" %>
 					</div>
+					<div class="button white">
+						<%= link_to "Moderator &#x2192;", guild_moderatorships_path(@guild), :id => "to_moderator" %>
+					</div>
+					<div class="loader"></div>
 				</div>
-			<% end %>
+				<ul class="list_view 3-columns" id="moderators_list_view">
+					<% @moderators.each do |member| %>
+						<%= content_tag :li, member.login, :id => "user_#{member.id}" %>
+					<% end %>
+				</ul>
+				<div class="clear"></div>
+			</div>
 			
 			<% semantic_form_for @guild, :html => { :multipart => true, :id => 'informacje' } do |f| %>
 				<% f.inputs do %>

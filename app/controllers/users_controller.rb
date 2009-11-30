@@ -28,8 +28,12 @@ class UsersController < ApplicationController
   
   def update
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Zapisano zmiany"
-      redirect_to root_url
+      if params[:user][:avatar].blank?
+        flash[:notice] = "Zapisano zmiany"
+        redirect_to @user
+      else
+        render :action => "crop"
+      end
     else
       render :action => 'edit'
     end

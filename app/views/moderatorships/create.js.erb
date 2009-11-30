@@ -1,0 +1,3 @@
+<% @members.each do |member| %>
+	$('#moderators_list_view').append('<%= content_tag :li, member.login, :id => "user_#{member.id}" %>');
+<% end %>

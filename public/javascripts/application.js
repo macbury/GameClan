@@ -23,4 +23,5 @@ $(document).ready(function () {
 	setTimeout(function () {
 		$('.flash_notice, .flash_error').slideUp()
 	}, 10000)
+
 });

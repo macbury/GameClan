@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   acts_as_authentic
   xss_terminate
   
-  has_attached_file :avatar, :styles => { :logo => "200x200>", :forum => "48x48>" }
+  has_attached_file :avatar, :styles => { :logo => "200x200#", :forum => "48x48#", :large => "500x500>" }, :processors => [:cropper]
   validates_attachment_size :avatar, :less_than => 500.kilobytes
   
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
@@ -19,6 +19,22 @@ class User < ActiveRecord::Base
   has_many :roles, :through => :assignments
   has_many :topics, :dependent => :destroy
   has_many :posts, :dependent => :destroy
+  
+  validates_length_of :full_name, :maximum => 255
+  validates_length_of :www, :maximum => 255
+  validates_format_of :www, :with =>  /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
+  
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  after_update :reprocess_avatar, :if => :cropping?
+  
+  def cropping?
+    !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?
+  end
+  
+  def avatar_geometry(style = :original)
+    @geometry ||= {}
+    @geometry[style] ||= Paperclip::Geometry.from_file(avatar.path(style))
+  end
   
   def role_symbols
     roles.map { |role| role.name.underscore.to_sym }
@@ -43,4 +59,9 @@ class User < ActiveRecord::Base
     login
   end
   
+  private
+    
+    def reprocess_avatar
+      avatar.reprocess!
+    end
 end

@@ -1,9 +1,11 @@
 class GuildsController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
-  
+
   filter_access_to [:create, :new]
   filter_access_to [:show, :edit, :destroy, :update], :attribute_check => true,
                           :load_method => lambda { @guild = Guild.find_by_permalink(params[:id]) }
+  
+  before_filter :preload_members, :only => [:edit, :update]
   # GET /guilds
   # GET /guilds.xml
   def index
@@ -84,4 +86,12 @@ class GuildsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  protected
+    def preload_members
+      @moderators = @guild.moderators.all(:order => 'login ASC')
+      conditions = {}
+      conditions = { :id.not => @moderators.map(&:id) } unless @moderators.nil? || @moderators.empty?
+      @members = @guild.members.all(:order => 'login ASC', :conditions => conditions)
+    end
 end

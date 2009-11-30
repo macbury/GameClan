@@ -6,9 +6,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><%= title %></title>
 	<meta name="viewport" content="width=900" />
+	
 	<%= stylesheet_link_tag 'formtastic', 'formtastic_changes', 'ui', 'colorpicker', 'facebox' %>
 	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
-	<%= javascript_include_tag 'jquery.min.js', 'rails', 'colorpicker', 'application', 'facebox' %>
+	<%= javascript_include_tag 'jquery.min.js', 'rails', 'colorpicker', 'application', 'facebox', 'jquery-ui.min.js', 'moderators' %>
 	<% if !@guild.nil? && !@guild.new_record? %>
 		<style type="text/css" media="screen">
 			body { 
@@ -17,6 +18,7 @@
 			}
 		</style>
 	<% end %>
+	<%= yield :head %>
 </head>
 <body>
 	<div class="top reset" >

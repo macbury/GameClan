@@ -1,5 +1,10 @@
 <tr class="<%= cycle('normal', 'alt') %>">
-	<td><%= link_to_topic topic %></td>
+	<td>
+		<%= link_to_topic topic %> 
+		<% if permitted_to? :edit, topic %>
+			[<%= link_to "Edytuj", edit_guild_forum_topic_path(topic.forum.guild, topic.forum, topic) %>]
+		<% end %>
+	</td>
 	<td class="text_center">
 		<%= topic.posts_count %>
 	</td>

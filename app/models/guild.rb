@@ -22,7 +22,7 @@ class Guild < ActiveRecord::Base
   has_many :all_members, :through => :memberships, :source => :user
   
   has_many :moderatorships, :dependent => :destroy
-  has_many :moderators, :through => :moderatorships
+  has_many :moderators, :through => :moderatorships, :source => :user
   
   has_many :forums, :dependent => :destroy
   has_many :topics, :through => :forums
@@ -57,8 +57,17 @@ class Guild < ActiveRecord::Base
     self.user.assign_role('Guild-Master')
   end
   
+  def assign_moderator(user)
+    moderatorships.find_or_create_by_user_id(user.id)
+    user.assign_role("Guild-Moderator")
+  end
+  
   def isGuildMaster?(user)
     self.user.id == user.id
+  end
+  
+  def isGuildModerator(user)
+    !self.moderators.find(user.id).nil?
   end
   
   def set_theme

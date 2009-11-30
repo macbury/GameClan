@@ -110,6 +110,8 @@ pl:
       user:
         password: "Hasło"
         password_confirmation: "Powtórz hasło"
+        www: "Strona WWW"
+        full_name: "Imie i Nazwisko"
       user_session:
         password: "Hasło"
       guild:
@@ -131,6 +133,7 @@ pl:
       topic:
         title: "Tytuł"
         body: "Treść"
+        sticky: "Przyklejony"
       post:
         body: "Treść"
       comment:

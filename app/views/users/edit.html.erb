@@ -2,14 +2,16 @@
 	<div class="box">
 		<div>
 			<fieldset>
-				<legend>Avatar</legend>
+				<legend>Edycja profilu użytkownika <%= @user.login %></legend>
 				<% semantic_form_for @user, :html => { :multipart => true } do |f| %>
 					<% f.inputs do %>
+						<%= f.inputs :full_name %>
+						<%= f.inputs :www %>
 						<%= f.input :avatar %>
 					<% end %>
 					<div class="text_right">
 						<div class="button">
-							<%= f.submit "Wyślij" %>
+							<%= f.submit "Zapisz" %>
 						</div>
 					</div>
 				<% end %>

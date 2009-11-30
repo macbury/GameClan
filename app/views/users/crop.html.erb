@@ -1,0 +1,41 @@
+<% content_for(:head) do %>
+<%= stylesheet_link_tag "jquery.Jcrop" %>
+<%= javascript_include_tag "jquery.Jcrop.min" %>
+<script type="text/javascript" charset="utf-8">
+$(function() {
+  $('#cropbox').Jcrop({
+    onChange: update_crop,
+    onSelect: update_crop,
+    setSelect: [0, 0, 500, 500],
+    aspectRatio: 1
+  });
+});
+
+function update_crop(coords) {
+  var rx = 100/coords.w;
+  var ry = 100/coords.h;
+  var ratio = <%= @user.avatar_geometry(:original).width %> / <%= @user.avatar_geometry(:large).width %>;
+  $("#crop_x").val(Math.round(coords.x * ratio));
+  $("#crop_y").val(Math.round(coords.y * ratio));
+  $("#crop_w").val(Math.round(coords.w * ratio));
+  $("#crop_h").val(Math.round(coords.h * ratio));
+}
+</script>
+<% end %>
+
+<div class="content center">
+	<div class="box">
+		<div class="text_center">
+			<%= image_tag @user.avatar.url(:large), :id => "cropbox" %>
+
+			<% form_for @user do |f| %>
+			  <% for attribute in [:crop_x, :crop_y, :crop_w, :crop_h] %>
+			    <%= f.hidden_field attribute, :id => attribute %>
+			  <% end %>
+				<div class="button">
+					<%= f.submit "Zapisz!" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

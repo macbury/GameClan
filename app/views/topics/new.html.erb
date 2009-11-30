@@ -7,12 +7,18 @@
 					<% f.inputs do %>
 						<%= f.input :title if @topic.new_record? %>
 						<%= f.input :body, :hint => '*strong* | # lista numerowana | * lista wypunktowana | _em_ | __italic__ | "link":http:// | bq. cytat.' %>
+						<%= f.input :sticky if @topic.new_record? %>
 					<% end %>
 				
 					<div class="text_right">
 						<div class="button special">
 							<%= f.submit @topic.new_record? ? "Dodaj" : "Zapisz" %>
 						</div>
+						<% unless @topic.new_record? %>
+						<div class="button">
+							<%= link_to "Usuń", [@guild, @forum, @topic], :method => :delete, :confirm => "Czy na pewno chcesz usunąć ten temat?" %>
+						</div>
+						<% end %>
 						<div class="button white">
 							<%= link_to 'Anuluj', @topic.new_record? ? guild_forum_path(@guild, @forum) : [@guild, @forum, @topic] %>
 						</div>

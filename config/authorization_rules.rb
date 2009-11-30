@@ -1,6 +1,6 @@
 authorization do
   role :admin do
-    has_permission_on [:guilds, :members, :topic, :posts, :users], :to => :act_as_god
+    has_permission_on [:guilds, :members, :topic, :posts, :users, :moderatorships], :to => :act_as_god
     has_permission_on :authorization_rules, :to => :read
   end
   
@@ -21,6 +21,10 @@ authorization do
   
   role :guild_master do
     includes :guest
+    
+    has_permission_on :moderatorships, :to => [:create, :destroy] do
+      if_attribute :master => is { user }
+    end
     
     has_permission_on :guilds, :to => :change do
       if_attribute :master => is { user }
@@ -58,8 +62,16 @@ authorization do
     has_permission_on :members, :to => :leave
   end
   
-  role :moderator do
+  role :guild_moderator do
     includes :guest
+    
+    has_permission_on :topics, :to => :moderate do
+      if_attribute :forum => { :guild => { :moderators => contains { user } } }
+    end
+    
+    has_permission_on :posts, :to => :moderate do
+      if_attribute :topic => { :forum => { :guild => { :moderators => contains { user } } } }
+    end
     #has_permission_on :guilds, :to => [:edit, :update]
   end
 
@@ -70,12 +82,16 @@ privileges do
     includes :edit, :update, :delete, :destroy
   end
   
+  privilege :moderate do
+    includes :edit, :update, :delete, :destroy
+  end
+  
   privilege :view do
     includes :index, :show
   end
   
   privilege :act_as_god do
-    includes :create, :new, :index, :show, :edit, :update, :delete, :destroy
+    includes :all
   end
   
   privilege :manage_all do
