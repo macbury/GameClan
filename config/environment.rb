@@ -10,6 +10,8 @@ Rails::Initializer.run do |config|
   config.gem 'searchlogic'
   config.gem 'authlogic'
   config.gem 'RedCloth', :lib => "redcloth"
+  config.gem 'starling'
+  config.gem 'rvideo'
   config.gem "declarative_authorization", :source => "http://gemcutter.org"
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers

@@ -1,0 +1,15 @@
+<%= render :partial => "/shared/guild_sidebar" %>
+<div class="content">
+	<div class="box">
+		<div>
+			<ul class="movies reset">
+				<% for movie in @movies %>
+					<li>
+						<%= image_tag movie.preview.url(:small) %>
+						<%= link_to movie.title, [@guild, movie] %>
+					</li>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -9,7 +9,7 @@
 	
 	<%= stylesheet_link_tag 'formtastic', 'formtastic_changes', 'ui', 'colorpicker', 'facebox' %>
 	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
-	<%= javascript_include_tag 'jquery.min.js', 'rails', 'colorpicker', 'application', 'facebox', 'jquery-ui.min.js', 'moderators' %>
+	<%= javascript_include_tag 'jquery.min.js', 'rails', 'colorpicker', 'application', 'facebox', 'jquery-ui.min.js', 'moderators', 'flowplayer.min' %>
 	<% if !@guild.nil? && !@guild.new_record? %>
 		<style type="text/css" media="screen">
 			body { 
@@ -26,7 +26,7 @@
 			<% if !@guild.nil? && !@guild.new_record? %>
 			<li><%= link_to "Kokpit", @guild %></li>
 			<li><%= link_to "Forum", guild_forums_path(@guild) %></li>
-			<li><a href="#">Multimedia</a></li>
+			<li><%= link_to "Filmy", guild_movies_path(@guild) %></li>
 			<li><%= link_to "Członkowie", guild_members_path(@guild) %></li>
 			<li><a href="#">Kalendarz</a></li>
 				<% if permitted_to? :change, @guild %>

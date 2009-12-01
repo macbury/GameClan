@@ -1,0 +1,12 @@
+<h1>New movie</h1>
+
+<% semantic_form_for([@guild, @movie], :html => { :multipart => true }) do |f| %>
+	<% f.inputs do %>
+		<%= f.input :title %>
+		<%= f.input :description %>
+		<%= f.input :clip %>
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+	<% end %>
+<% end %>

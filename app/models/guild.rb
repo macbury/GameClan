@@ -24,6 +24,8 @@ class Guild < ActiveRecord::Base
   has_many :moderatorships, :dependent => :destroy
   has_many :moderators, :through => :moderatorships, :source => :user
   
+  has_many :movies, :dependent => :destroy
+  
   has_many :forums, :dependent => :destroy
   has_many :topics, :through => :forums
   

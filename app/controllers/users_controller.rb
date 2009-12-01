@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_filter :login_required, :except => [:new, :create, :show, :index]
   
+  filter_access_to [:new, :create]
   filter_access_to [:edit, :destroy, :update], :attribute_check => true,
                           :load_method => lambda { @user = User.find_by_login(params[:id]) }
   def new

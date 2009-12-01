@@ -2,7 +2,7 @@ class TopicsController < ApplicationController
   before_filter :login_required, :except => [:show]
   before_filter :load_resources
   
-  filter_access_to [:create, :new]
+  filter_access_to [:create, :new], :load_method => lambda { @topic = @forum.topics.new(params[:topic]) }, :attribute_check => true
   filter_access_to [:show, :edit, :destroy, :update], :attribute_check => true,
                           :load_method => lambda { @topic = @forum.topics.find_by_permalink(params[:id]) }
   # GET /topics/1
@@ -27,8 +27,6 @@ class TopicsController < ApplicationController
   # GET /topics/new
   # GET /topics/new.xml
   def new
-    @topic = Topic.new
-
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @topic }
@@ -43,8 +41,7 @@ class TopicsController < ApplicationController
   # POST /topics
   # POST /topics.xml
   def create
-    @topic = self.current_user.topics.new(params[:topic])
-    @topic.forum = @forum
+    @topic.user = self.current_user
     
     respond_to do |format|
       if @topic.save

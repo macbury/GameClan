@@ -1,13 +1,13 @@
 class PostsController < ApplicationController
   before_filter :login_required, :load_resources
   
-  filter_access_to [:create]
+  filter_access_to [:create, :new], :attribute_check => true, 
+                                    :load_method => lambda { @post = @topic.posts.new(params[:post]) }
   filter_access_to [:show, :edit, :destroy, :update], :attribute_check => true,
                           :load_method => lambda { @post = @topic.posts.find(params[:id]) }
                           
   def create
-    @post = self.current_user.posts.new(params[:post])
-    @post.topic = @topic
+    @post.user = self.current_user
     @topic.replied_by = self.current_user
     @topic.save
     if @post.save

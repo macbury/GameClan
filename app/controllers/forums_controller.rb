@@ -2,7 +2,8 @@ class ForumsController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
   before_filter :find_guild
   
-  filter_access_to [:create, :new]
+  filter_access_to [:create, :new], :attribute_check => true, 
+                                    :load_method => lambda { @forum = @guild.forums.new(params[:forum]) }
   filter_access_to [:show, :edit, :destroy, :update], :attribute_check => true,
                           :load_method => lambda { @forum = @guild.forums.find_by_permalink(params[:id]) }
   # GET /forums
@@ -30,7 +31,6 @@ class ForumsController < ApplicationController
   # GET /forums/new
   # GET /forums/new.xml
   def new
-    @forum = Forum.new
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,8 +46,6 @@ class ForumsController < ApplicationController
   # POST /forums
   # POST /forums.xml
   def create
-    @forum = @guild.forums.new(params[:forum])
-
     respond_to do |format|
       if @forum.save
         flash[:notice] = 'Forum zostało utworzone!'
@@ -81,7 +79,7 @@ class ForumsController < ApplicationController
     @forum.destroy
 
     respond_to do |format|
-      format.html { redirect_to([@guild, @forum]) }
+      format.html { redirect_to(guild_forums_path(@guild)) }
       format.xml  { head :ok }
     end
   end

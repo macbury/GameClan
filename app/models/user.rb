@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   
   has_attached_file :avatar, :styles => { :logo => "200x200#", :forum => "48x48#", :large => "500x500>" }, :processors => [:cropper]
   validates_attachment_size :avatar, :less_than => 500.kilobytes
-  
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
   
   has_many :guilds, :dependent => :destroy
@@ -20,8 +19,10 @@ class User < ActiveRecord::Base
   has_many :topics, :dependent => :destroy
   has_many :posts, :dependent => :destroy
   
-  validates_length_of :full_name, :maximum => 255
-  validates_length_of :www, :maximum => 255
+  has_many :movies, :dependent => :destroy
+  
+  #validates_length_of :full_name, :within => 0..255
+  #validates_length_of :www, :within => 0..255
   validates_format_of :www, :with =>  /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h

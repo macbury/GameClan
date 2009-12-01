@@ -1,11 +1,11 @@
 authorization do
   role :admin do
-    has_permission_on [:guilds, :members, :topic, :posts, :users, :moderatorships], :to => :act_as_god
+    has_permission_on [:guilds, :members, :topic, :posts, :users, :moderatorships, :movies], :to => :act_as_god
     has_permission_on :authorization_rules, :to => :read
   end
   
   role :guest do
-    has_permission_on [:guilds, :members, :forums, :topics, :posts], :to => :view
+    has_permission_on [:guilds, :members, :forums, :topics, :posts, :movies], :to => :view
     has_permission_on [:memberships, :members], :to => [:new, :create]
     has_permission_on :guilds, :to => [:new, :create]
     
@@ -30,7 +30,7 @@ authorization do
       if_attribute :master => is { user }
     end
     
-    has_permission_on :forums, :to => :manage_all do
+    has_permission_on [:forums, :movies], :to => :manage_all do
       if_attribute :guild => { :master => is { user } }
     end
     
@@ -54,11 +54,22 @@ authorization do
   role :guild_member do
     includes :guest
     
-    #:guild => { :memberships => contains { user } }
-    has_permission_on [:topics, :posts], :to => [:new, :create, :show]
-    has_permission_on [:topics, :posts], :to => :change do
+    has_permission_on :movies, :to => [:new, :create] do
+      if_attribute :guild => { :members => contains { user } }
+    end
+    
+    has_permission_on :posts, :to => [:new, :create] do
+      if_attribute :topic => { :forum => { :guild => { :members => contains { user } } } }
+    end
+    
+    has_permission_on :topics, :to => [:new, :create] do
+      if_attribute :forum => { :guild => { :members => contains { user } } }
+    end
+    
+    has_permission_on [:topics, :posts, :movies], :to => :change do
       if_attribute :user => is { user }
     end
+    
     has_permission_on :members, :to => :leave
   end
   
