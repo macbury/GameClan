@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
   # GET /movies
   # GET /movies.xml
   def index
-    @movies = @guild.movies.all
+    @movies = @guild.movies.paginate :per_page => 10, :page => params[:page], :order => "title ASC"
 
     respond_to do |format|
       format.html # index.html.erb

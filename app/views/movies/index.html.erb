@@ -2,14 +2,22 @@
 <div class="content">
 	<div class="box">
 		<div>
-			<ul class="movies reset">
-				<% for movie in @movies %>
-					<li>
-						<%= image_tag movie.preview.url(:small) %>
-						<%= link_to movie.title, [@guild, movie] %>
-					</li>
-				<% end %>
-			</ul>
+			<% if @movies.nil? || @movies.empty? %>
+				<p class="info">Brak filmów</p>
+			<% else %>
+				<ul class="movies reset">
+					<%= render :partial => @movies %>
+				</ul>
+			<% end %>
 		</div>
+		<% if permitted_to? :create, @guild.movies.new %>
+		<div class="control">
+			<div class="button special right">
+				<%= link_to "Dodaj film", new_guild_movie_path(@guild) %>
+			</div>
+			<%= will_paginate @movies %>
+			<div class="clear"></div>
+		</div>
+		<% end %>
 	</div>
 </div>

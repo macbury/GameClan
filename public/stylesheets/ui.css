@@ -154,6 +154,8 @@ input[type="text"], input[type="password"], textarea {
 	color: #000;
 }
 
+textarea { height: 100px; }
+
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 	background-color: #e6f7ff;
   border-bottom: 1px solid #7FAEFF; 
@@ -314,10 +316,6 @@ thead th	{ font-weight:bold; color:#666; padding:2px 5px; font-size:11px; backgr
 thead th:first-child { border-left:none !important; }
 thead th.optional { font-weight:normal !important; }
 tr.alt { background:#f6f6f6; }
-
-/* Fields */
-
-#guild_guild_join_text, #guild_about, #membership_reason, #post_body { height: 100px; }
 
 /* Forum */
 
@@ -492,3 +490,61 @@ table.posts tr.spacer:last-child { display: none; }
 }
 
 .list_view_divider .button { width: 100px; margin-top: 5px; }
+
+/* Player */
+
+.player {
+	display:block;
+	width:480px;
+	height:360px; 
+	margin: 10px auto;
+	background: #000 url() no-repeat;
+	cursor: pointer;
+	text-align: center;
+}
+
+.player > .play_button { margin-top: 140px; }
+
+/* movies */
+
+.movies > li { min-height: 96px; margin-bottom: 5px; }
+.movies > li:last-child { margin-bottom: 0; }
+
+.movies > li > a {
+	display: block;
+	padding: 2px;
+	border: 1px solid #999;
+	width: 120px;
+	height: 90px;
+	position: absolute;
+}
+
+.movies > li > a > img { width: 120px; height: 90px; }
+
+.movies > li > a > .time {
+	cursor: pointer;
+	display: block;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-right: 2px;
+	margin-top: -20px;
+	text-align: right;
+	white-space: nowrap;
+}
+
+.movies > li > a > .time > span {
+	background: rgba(0,0,0, 0.8);
+	-webkit-border-radius: 2px;
+	color: #fff;
+	font-size: 10px;
+	padding: 1px 2px;
+}
+
+.movies > li > div {
+	margin-left: 135px;
+	min-height: 90px;
+	padding: 5px 0;
+}
+
+.movies > li > div > h4 { font-size: 14px; }
+.movies > li > div > p { font-size: 10px; margin: 5px 0 0 0; }
+.movies > li > div > div { height: 50px; }

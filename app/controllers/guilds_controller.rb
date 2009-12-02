@@ -21,7 +21,8 @@ class GuildsController < ApplicationController
   # GET /guilds/1.xml
   def show
     @topics = @guild.topics.all(:order=>"updated_at DESC", :include => [:user, :forum, :replied_by], :limit => 10)
-
+    @movies = @guild.movies.all(:order=>"created_at DESC", :include => [:user], :limit => 5)
+    
     respond_to do |format|
       format.html
       format.xml  { render :xml => @guild }

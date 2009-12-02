@@ -112,6 +112,10 @@ pl:
         password_confirmation: "Powtórz hasło"
         www: "Strona WWW"
         full_name: "Imie i Nazwisko"
+      movie:
+        title: "Tytuł"
+        description: "Opis"
+        clip: "Film"
       user_session:
         password: "Hasło"
       guild:

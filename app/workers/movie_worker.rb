@@ -15,7 +15,7 @@ class MovieWorker < Workling::Base
     
     recipe = "ffmpeg -i $input_file$ -s 480x360 -acodec mp3 -ac 1 -ar 22050 -b 1300k -r 20 -aspect 4:3 -vcodec flv  -flags +aic+cbp+mv0+mv4+trell -y $output_file$ \n"
     recipe += "flvtool2 -U $output_file$ \n"
-    recipe += "ffmpeg -i $input_file$ -ss 5 -s 320x240 -vframes 1 -f image2 -an #{thumb_file}"
+    recipe += "ffmpeg -i $input_file$ -ss 5 -s 480x360 -vframes 1 -f image2 -an #{thumb_file}"
     
     transcoder = RVideo::Transcoder.new
     

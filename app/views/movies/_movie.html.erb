@@ -1,0 +1,13 @@
+<li>
+	<% link_to [@guild, movie] do %>
+		<%= image_tag(movie.preview.url(:small)) %>
+		<!--><span class="time">
+			<span><%= format_time(movie.duration) %></span>
+		</span>-->
+	<% end %>
+	<div>
+		<h4><%= link_to movie.title, [@guild, movie] %></h4>
+		<div><%= truncate movie.description, :length => 512 %></div>
+		<p>dodano <%= distance_of_time_in_words_to_now(movie.created_at) %> przez <%= link_to movie.user.login, movie.user %></p>
+	</div>
+</li>

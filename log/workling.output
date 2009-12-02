@@ -33,3 +33,26 @@
 ** Use CTRL-C to stop.
 /Library/Ruby/Gems/1.8/gems/activesupport-2.3.4/lib/active_support/core_ext/kernel/agnostics.rb:7: warning: Insecure world writable dir /usr/local/depot_tools in PATH, mode 040777
 /Library/Ruby/Gems/1.8/gems/activesupport-2.3.4/lib/active_support/core_ext/kernel/agnostics.rb:7: warning: Insecure world writable dir /usr/local/depot_tools in PATH, mode 040777
+** Exiting
+=> Loading Rails...
+** Rails loaded.
+** Starting Workling::Remote::Invokers::ThreadedPoller...
+** Use CTRL-C to stop.
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.4/lib/active_support/core_ext/kernel/agnostics.rb:7: warning: Insecure world writable dir /usr/local/depot_tools in PATH, mode 040777
+/Library/Ruby/Gems/1.8/gems/activesupport-2.3.4/lib/active_support/core_ext/kernel/agnostics.rb:7: warning: Insecure world writable dir /usr/local/depot_tools in PATH, mode 040777
+** Exiting
+/Library/Ruby/Gems/1.8/gems/activerecord-2.3.4/lib/active_record/base.rb:1586:in `find_one': Couldn't find Movie with ID=7 (ActiveRecord::RecordNotFound)
+	from /Users/MacBury/Sites/Rails/game_clan/vendor/plugins/workling/script/../lib/workling/remote/invokers/threaded_poller.rb:37:in `join'
+	from /Users/MacBury/Sites/Rails/game_clan/vendor/plugins/workling/script/../lib/workling/remote/invokers/threaded_poller.rb:37:in `listen'
+	from /Users/MacBury/Sites/Rails/game_clan/vendor/plugins/workling/script/../lib/workling/remote/invokers/threaded_poller.rb:37:in `each'
+	from /Users/MacBury/Sites/Rails/game_clan/vendor/plugins/workling/script/../lib/workling/remote/invokers/threaded_poller.rb:37:in `listen'
+	from /Users/MacBury/Sites/Rails/game_clan/vendor/plugins/workling/script/listen.rb:24
+	from /Library/Ruby/Gems/1.8/gems/daemons-1.0.10/lib/daemons/application.rb:176:in `load'
+	from /Library/Ruby/Gems/1.8/gems/daemons-1.0.10/lib/daemons/application.rb:176:in `start_load'
+	from /Library/Ruby/Gems/1.8/gems/daemons-1.0.10/lib/daemons/application.rb:257:in `start'
+	from /Library/Ruby/Gems/1.8/gems/daemons-1.0.10/lib/daemons/controller.rb:69:in `run'
+	from /Library/Ruby/Gems/1.8/gems/daemons-1.0.10/lib/daemons.rb:139:in `run'
+	from /Library/Ruby/Gems/1.8/gems/daemons-1.0.10/lib/daemons/cmdline.rb:105:in `call'
+	from /Library/Ruby/Gems/1.8/gems/daemons-1.0.10/lib/daemons/cmdline.rb:105:in `catch_exceptions'
+	from /Library/Ruby/Gems/1.8/gems/daemons-1.0.10/lib/daemons.rb:138:in `run'
+	from ./script/workling_client:17

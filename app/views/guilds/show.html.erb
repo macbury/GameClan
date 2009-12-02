@@ -25,12 +25,16 @@
 		</div>
 	</div>
 	
+	<% unless @movies.nil? || @movies.empty? %>
 	<div class="box">
 		<div>
-			<h2>Ostatnio dodane multimedia</h2>
+			<h3>Ostatnio dodane filmy</h3>
+			<ul class="movies reset">
+				<%= render :partial => @movies %>
+			</ul>
 		</div>
 	</div>
-	
+	<% end %>
 	<div class="box">
 		<div>
 			<h2>Zbliżające się wydarzenia</h2>
