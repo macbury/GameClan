@@ -85,4 +85,8 @@ class ApplicationController < ActionController::Base
 
     end
   end
+  
+  def find_guild
+    @guild = Guild.find_by_permalink(params[:guild_id])
+  end
 end

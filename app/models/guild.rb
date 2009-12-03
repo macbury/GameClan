@@ -25,12 +25,15 @@ class Guild < ActiveRecord::Base
   has_many :moderators, :through => :moderatorships, :source => :user
   
   has_many :movies, :dependent => :destroy
+  has_many :events, :dependent => :destroy  
   
   has_many :forums, :dependent => :destroy
   has_many :topics, :through => :forums
   
   belongs_to :user
   belongs_to :master, :class_name => "User", :foreign_key => "user_id"
+  
+  attr_protected :user_id
   
   has_attached_file :background, :styles => { :thumb => "100x100>" },
                     :url  => "/guild_assets/backgrounds/:style/:id.:extension",

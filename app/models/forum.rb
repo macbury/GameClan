@@ -11,6 +11,8 @@ class Forum < ActiveRecord::Base
   
   has_permalink :name, :update => true
   
+  attr_protected :guild_id
+  
   def to_param
     permalink
   end

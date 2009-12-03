@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  guild_id: 1
+  user_id: 1
+  what: MyString
+  description: MyText
+  when: 2009-12-03 19:35:57
+  where: MyString
+  permalink: MyString
+
+two:
+  guild_id: 1
+  user_id: 1
+  what: MyString
+  description: MyText
+  when: 2009-12-03 19:35:57
+  where: MyString
+  permalink: MyString

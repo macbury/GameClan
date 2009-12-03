@@ -6,7 +6,15 @@
 		</span>-->
 	<% end %>
 	<div>
-		<h4><%= link_to movie.title, [@guild, movie] %></h4>
+		<h4>
+			<%= link_to movie.title, [@guild, movie] %>
+			<% if permitted_to? :edit, movie %>
+			(
+				<%= link_to "Edytuj", edit_guild_movie_path(@guild, movie) %> | 
+				<%= link_to "Usuń", [@guild, movie], :method => :delete, :confirm => "Czy na pewno chcesz usunąć ten film?" %>
+			)
+			<% end %>
+		</h4>
 		<div><%= truncate movie.description, :length => 512 %></div>
 		<p>dodano <%= distance_of_time_in_words_to_now(movie.created_at) %> przez <%= link_to movie.user.login, movie.user %></p>
 	</div>

@@ -85,10 +85,5 @@ class MoviesController < ApplicationController
       format.xml  { head :ok }
     end
   end
-  
-  protected
-  
-    def find_guild
-      @guild = Guild.find_by_permalink(params[:guild_id])
-    end
+
 end

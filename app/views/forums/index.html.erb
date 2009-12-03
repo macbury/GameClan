@@ -18,7 +18,7 @@
 					</tr>
 					<% else %>
 					<% @forums.each do |forum| %>
-					<tr>
+					<tr class="<%= cycle('normal', 'alt') %>">
 						<td>
 							<%= link_to forum.name, [@guild, forum], :class => 'title' %>
 							<% if permitted_to? :manage_all, forum %>

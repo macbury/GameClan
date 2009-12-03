@@ -13,6 +13,8 @@ class Topic < ActiveRecord::Base
   validates_length_of :title, :within => 3..80
   validates_length_of :body, :within => 3..10000
   
+  attr_protected :user_id, :forum_id
+  
   def to_param
     permalink
   end

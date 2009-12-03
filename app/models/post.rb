@@ -6,4 +6,6 @@ class Post < ActiveRecord::Base
 
   validates_length_of :body, :within => 3..10000
   
+  attr_protected :user_id, :topic_id
+  
 end

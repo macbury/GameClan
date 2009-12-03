@@ -8,6 +8,8 @@ class Membership < ActiveRecord::Base
   validates_length_of :game_nick, :within => 0..32, :on => :create
   validates_format_of :stats_link, :with =>  /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/i, :on => :create
   
+  attr_protected :user_id, :guild_id, :accepted
+  
   def accept!(clean=true)
     unless clean
       

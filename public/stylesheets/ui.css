@@ -154,7 +154,7 @@ input[type="text"], input[type="password"], textarea {
 	color: #000;
 }
 
-textarea { height: 100px; }
+textarea { height: 100px; min-height: 100px; }
 
 input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 	background-color: #e6f7ff;
@@ -505,8 +505,9 @@ table.posts tr.spacer:last-child { display: none; }
 
 .player > .play_button { margin-top: 140px; }
 
-/* movies */
+#movie_content { display: none; width: 480px; height: 384px; margin: 10px auto; }
 
+/* movies */
 .movies > li { min-height: 96px; margin-bottom: 5px; }
 .movies > li:last-child { margin-bottom: 0; }
 
@@ -541,7 +542,7 @@ table.posts tr.spacer:last-child { display: none; }
 
 .movies > li > div {
 	margin-left: 135px;
-	min-height: 90px;
+	min-height: 85px;
 	padding: 5px 0;
 }
 

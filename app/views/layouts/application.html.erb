@@ -9,7 +9,7 @@
 	
 	<%= stylesheet_link_tag 'formtastic', 'formtastic_changes', 'ui', 'colorpicker', 'facebox' %>
 	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
-	<%= javascript_include_tag 'jquery.min.js', 'rails', 'colorpicker', 'application', 'facebox', 'jquery-ui.min.js', 'moderators', 'flowplayer.min' %>
+	<%= javascript_include_tag 'jquery.min.js', 'rails', 'colorpicker', 'application', 'facebox', 'jquery-ui.min.js', 'moderators', 'flowplayer.min', 'jquery.autogrow' %>
 	<% if !@guild.nil? && !@guild.new_record? %>
 		<style type="text/css" media="screen">
 			body { 
@@ -19,6 +19,9 @@
 		</style>
 	<% end %>
 	<%= yield :head %>
+	<script src="http://www.wowhead.com/widgets/power.js"></script>
+  <script src="http://i.thottbot.com/power.js"></script>
+  <script src="http://www.wowdb.com/js/extooltips.js"></script>
 </head>
 <body>
 	<div class="top reset" >
@@ -28,7 +31,7 @@
 			<li><%= link_to "Forum", guild_forums_path(@guild) %></li>
 			<li><%= link_to "Filmy", guild_movies_path(@guild) %></li>
 			<li><%= link_to "Członkowie", guild_members_path(@guild) %></li>
-			<li><a href="#">Kalendarz</a></li>
+			<li><%= link_to "Kalendarz", guild_events_path(@guild) %></li>
 				<% if permitted_to? :change, @guild %>
 					<li><%= link_to 'Ustawienia', edit_guild_path(@guild) %></li>
 				<% end %>

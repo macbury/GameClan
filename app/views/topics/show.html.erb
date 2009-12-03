@@ -22,7 +22,7 @@
 				<legend>Odpowiedź</legend>
 				<% semantic_form_for [@guild, @forum, @topic, @post] do |f| %>
 					<% f.inputs do %>
-						<%= f.input :body %>
+						<%= f.input :body, :hint => '*strong* | # lista numerowana | * lista wypunktowana | _em_ | __italic__ | "link":http:// | bq. cytat.' %>
 						<div class="text_right">
 							<div class="button special">
 								<%= f.submit "Odpowiedz" %>

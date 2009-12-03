@@ -9,11 +9,23 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091130220022) do
+ActiveRecord::Schema.define(:version => 20091203183557) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
     t.integer  "role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "events", :force => true do |t|
+    t.integer  "guild_id"
+    t.integer  "user_id"
+    t.string   "what"
+    t.text     "description"
+    t.datetime "when"
+    t.string   "where"
+    t.string   "permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -20,13 +20,15 @@ class User < ActiveRecord::Base
   has_many :posts, :dependent => :destroy
   
   has_many :movies, :dependent => :destroy
-  
+  has_many :events, :dependent => :destroy  
   #validates_length_of :full_name, :within => 0..255
   #validates_length_of :www, :within => 0..255
   validates_format_of :www, :with =>  /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   
   attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
   after_update :reprocess_avatar, :if => :cropping?
+  
+  attr_protected :roles, :assignments
   
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?

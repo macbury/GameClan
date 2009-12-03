@@ -1,7 +1,11 @@
 <% content_for :head do %>
 	<script type="text/javascript" charset="utf-8">
 		$(document).ready(function () {
-			flowplayer("player", "/flash/flowplayer-3.1.5.swf", <%= @movie.video.url.inspect %>);
+			$('#player').click(function () {
+				$(this).remove();
+				$('#movie_content').css('display', 'block');
+				flowplayer("movie_content", "/flash/flowplayer-3.1.5.swf");
+			});
 		});
 	</script>
 <% end %>
@@ -17,18 +21,30 @@
 		<div class="text_center">
 			<% unless @movie.video.file? %>
 				<%= image_tag 'reksio_anim.gif' %>
-				<p class="info">Film jest w kolejce do kompresji... To może chwile potrwać...</p>
+				<p class="info">Film jest w kolejce do konwersji... To może chwile potrwać...</p>
 			<% else %>
 			<div class="player" id="player" style="background-image:url(<%= @movie.preview.url %>)">
 				<%= image_tag 'play_large.png', :class => "play_button" %>
 			</div>
+			<a id="movie_content" href="<%= @movie.video.url %>"></a>
 			<% end %>
 		</div>
 	</div>
 	
 	<div class="box">
 		<div>
+			<h3>Opis</h3>
 			<%= simple_format @movie.description %>
+			<% if permitted_to? :edit, @movie %>
+			<div class="text_right">
+				<div class="button special">
+					<%= link_to "Edytuj", edit_guild_movie_path(@guild, @movie) %>
+				</div>
+				<div class="button white">
+					<%= link_to "Usuń", [@guild, @movie], :method => :delete, :confirm => "Czy na pewno chcesz usunąć ten film?" %>
+				</div>
+			</div>
+			<% end %>
 		</div>
 	</div>
 </div>

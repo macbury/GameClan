@@ -1,0 +1,38 @@
+<p>
+  <b>Guild:</b>
+  <%=h @event.guild_id %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%=h @event.user_id %>
+</p>
+
+<p>
+  <b>What:</b>
+  <%=h @event.what %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @event.description %>
+</p>
+
+<p>
+  <b>When:</b>
+  <%=h @event.when %>
+</p>
+
+<p>
+  <b>Where:</b>
+  <%=h @event.where %>
+</p>
+
+<p>
+  <b>Permalink:</b>
+  <%=h @event.permalink %>
+</p>
+
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
