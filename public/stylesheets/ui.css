@@ -55,7 +55,7 @@ a:active { color: #000; }
 
 /* Forms */
 
-fieldset {
+div > fieldset {
 	border: 2px solid #ddd;
 	border-radius: 5px;
 	padding: 10px 20px;
@@ -65,7 +65,7 @@ fieldset {
 form { padding: 10px !important; }
 fieldset form { padding: 0 !important; }
 
-legend {
+div > fieldset > legend {
 	font-weight: bold;
 	padding: 0 15px 0px 0;
 	margin-left: -22px;
@@ -555,8 +555,13 @@ table.posts tr.spacer:last-child { display: none; }
 /* calendar */
 
 .calendar th { text-align: center; }
-.calendar td { height: 60px; width: 14%; vertical-align: top; border-left: 1px solid #eee; cursor: pointer; }
+.calendar td { height: 60px; width: 14%; vertical-align: top; border-left: 1px solid #eee; cursor: pointer; overflow-x: hidden; }
 .calendar td:first-child { border-left: inherit; }
-.calendar .notmonth { color: #ddd; }
+.calendar .notmonth { opacity: 0.5; }
 .calendar .today { border: 2px solid #357CCB; }
-.calendar td:hover { background: #F2F2F2; }
+.calendar td:hover { background: #F9F9F9; }
+.calendar div { font-size: 9px; }
+
+.events > li { display: block; padding: 3px 5px; border-bottom:1px solid #ddd; }
+.events > li:last-child { border-bottom: 0; }
+.events > li.alt { background:#f6f6f6; }

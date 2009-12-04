@@ -33,8 +33,6 @@ class Guild < ActiveRecord::Base
   belongs_to :user
   belongs_to :master, :class_name => "User", :foreign_key => "user_id"
   
-  attr_protected :user_id
-  
   has_attached_file :background, :styles => { :thumb => "100x100>" },
                     :url  => "/guild_assets/backgrounds/:style/:id.:extension",
                     :path => ":rails_root/public/guild_assets/backgrounds/:style/:id.:extension"

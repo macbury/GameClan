@@ -12,6 +12,7 @@ Rails::Initializer.run do |config|
   config.gem 'RedCloth', :lib => "redcloth"
   config.gem 'starling'
   config.gem 'rvideo'
+  config.gem 'javan-whenever', :lib => 'whenever', :source => 'http://gems.github.com'
   config.gem "declarative_authorization", :source => "http://gemcutter.org"
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers
@@ -40,7 +41,9 @@ Rails::Initializer.run do |config|
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'Warsaw'
-
+  
+  config.action_mailer.smtp_settings = YAML.load_file("#{RAILS_ROOT}/config/mailer.yml")
+  
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :pl

@@ -1,38 +1,43 @@
-<p>
-  <b>Guild:</b>
-  <%=h @event.guild_id %>
-</p>
+<%= render :partial => "/shared/guild_sidebar" %>
 
-<p>
-  <b>User:</b>
-  <%=h @event.user_id %>
-</p>
-
-<p>
-  <b>What:</b>
-  <%=h @event.what %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%=h @event.description %>
-</p>
-
-<p>
-  <b>When:</b>
-  <%=h @event.when %>
-</p>
-
-<p>
-  <b>Where:</b>
-  <%=h @event.where %>
-</p>
-
-<p>
-  <b>Permalink:</b>
-  <%=h @event.permalink %>
-</p>
-
-
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<div class="content">
+	<div class="box">
+		<div>
+			<%= link_to "Wydarzenia", guild_events_path(@guild) %> &#x2192; <%= @event.what %>
+		</div>
+	</div>
+	
+	<div class="box">
+		<div>
+			<h3>Główne</h3>
+			<p>
+				<%= @event.what %>
+				<% if @event.when > Time.now %>
+					odbędzie się za <%= distance_of_time_in_words_to_now(@event.when) %>(<%= I18n.l @event.when, :format => :long %>)
+				<% else %>
+					odbyło się <%= distance_of_time_in_words_to_now(@event.when) %> temu(<%= I18n.l @event.when, :format => :long %>)
+				<% end %>
+				<% unless @event.where.nil? || !@event.where.blank? %>
+				 w <%= @event.where %>
+				<% end %>.
+			</p>
+			<h3>Opis</h3>
+			<% if @event.description.nil? || @event.description.blank? %>
+				<p class="info">Brak</p>
+			<% else %>
+				<%= simple_format(@event.description) %>
+			<% end %>
+			
+			<% if permitted_to? :edit, @event %>
+			<div class="text_right">
+				<div class="button special">
+					<%= link_to "Edytuj", edit_guild_event_path(@guild, @event) %>
+				</div>
+				<div class="button white">
+					<%= link_to "Usuń", [@guild, @event], :method => :delete, :confirm => "Czy na pewno chcesz usunąć to wydarzenie?" %>
+				</div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

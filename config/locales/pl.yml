@@ -141,6 +141,11 @@ pl:
         sticky: "Przyklejony"
       post:
         body: "Treść"
+      event:
+        what: "Co"
+        when: "Kiedy"
+        where: "Gdzie"
+        description: "Opis"
       comment:
         body: "Treść"
     errors:

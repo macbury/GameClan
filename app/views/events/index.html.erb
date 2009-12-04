@@ -23,10 +23,12 @@
 		<div class="calendar">
 			<% calendar_for(@events, :year => @month.year, :month => @month.month) do |t| %>
 				<%= t.head('pon', 'wto', 'śro', 'czw', 'pia', 'sob', 'nie') %>
-				<% t.day do |day, tasks| %>
+				<% t.day do |day, events| %>
 					<abbr title="<%= day.xmlschema %>"><%= day.day %></abbr>
-					<% tasks.each do |task| %>
-						<%= h(task.title) %>
+					<% events.sort{ |a,b| a.when <=> b.when }.each do |event| %>
+						<div class="time">
+							<%= link_to "#{event.when.strftime('%H:%M')} #{event.what}", [@guild, event] %>
+						</div>
 					<% end %>
 				<% end %>
 			<% end %>

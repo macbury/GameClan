@@ -10,7 +10,7 @@ class EventsController < ApplicationController
   # GET /events.xml
   def index
     @month = params[:month].to_date.at_beginning_of_month rescue Date.current
-    @events = @guild.events.all
+    @events = @guild.events.all(:conditions => ["events.when <= ? AND events.when >= ?", @month.at_end_of_month, @month.at_beginning_of_month])
 
     respond_to do |format|
       format.html # index.html.erb
@@ -41,6 +41,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    render :action => "new"
   end
 
   # POST /events
@@ -50,7 +51,7 @@ class EventsController < ApplicationController
     
     respond_to do |format|
       if @event.save
-        flash[:notice] = 'Event was successfully created.'
+        flash[:notice] = 'Zdarzenie zostało dodane'
         format.html { redirect_to([@guild,@event]) }
         format.xml  { render :xml => @event, :status => :created, :location => @event }
       else
@@ -65,11 +66,11 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update_attributes(params[:event])
-        flash[:notice] = 'Event was successfully updated.'
+        flash[:notice] = 'Zdarzenie zostało zapisane'
         format.html { redirect_to([@guild,@event]) }
         format.xml  { head :ok }
       else
-        format.html { render :action => "edit" }
+        format.html { render :action => "new" }
         format.xml  { render :xml => @event.errors, :status => :unprocessable_entity }
       end
     end
