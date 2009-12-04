@@ -25,6 +25,8 @@ a:active { color: #000; }
 .clear { clear: both; }
 .info { text-align: center; color: #ddd; font-size: 28px; font-weight: bold; }
 .loader { background: transparent url('/images/ajax.gif') no-repeat center center; height: 20px; display: none; }
+.right { float: right; }
+.left { float: left; }
 
 /* Flash */
 
@@ -549,3 +551,12 @@ table.posts tr.spacer:last-child { display: none; }
 .movies > li > div > h4 { font-size: 14px; }
 .movies > li > div > p { font-size: 10px; margin: 5px 0 0 0; }
 .movies > li > div > div { height: 50px; }
+
+/* calendar */
+
+.calendar th { text-align: center; }
+.calendar td { height: 60px; width: 14%; vertical-align: top; border-left: 1px solid #eee; cursor: pointer; }
+.calendar td:first-child { border-left: inherit; }
+.calendar .notmonth { color: #ddd; }
+.calendar .today { border: 2px solid #357CCB; }
+.calendar td:hover { background: #F2F2F2; }

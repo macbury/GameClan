@@ -9,6 +9,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.xml
   def index
+    @month = params[:month].to_date.at_beginning_of_month rescue Date.current
     @events = @guild.events.all
 
     respond_to do |format|
@@ -31,6 +32,7 @@ class EventsController < ApplicationController
   # GET /events/new
   # GET /events/new.xml
   def new
+    @event.when = params[:date].to_date rescue Date.current
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @event }
