@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  guild_id: 1
+  name: MyString
+  permalink: MyString
+  image_file_name: MyString
+  image_content_type: MyString
+  image_file_size: 1
+  image_updated_at: 2009-12-06 21:07:36
+
+two:
+  user_id: 1
+  guild_id: 1
+  name: MyString
+  permalink: MyString
+  image_file_name: MyString
+  image_content_type: MyString
+  image_file_size: 1
+  image_updated_at: 2009-12-06 21:07:36

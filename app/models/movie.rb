@@ -25,7 +25,7 @@ class Movie < ActiveRecord::Base
   
   after_create :process_clip
   
-  attr_protected :user_id
+  attr_protected :user_id, :guild_id
   
   def process_clip
     BackgroundWorker.asynch_convert(:movie_id => self.id)

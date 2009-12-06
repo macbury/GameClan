@@ -8,6 +8,7 @@ ActionController::Routing::Routes.draw do |map|
   
   map.resources :guilds do |guild|
     guild.resources :members, :member => { :reason => :get, :accept => :get }, :collection => { :leave => :get }
+		guild.resources :photos
     guild.resources :movies
     guild.resources :events
     guild.resources :moderatorships

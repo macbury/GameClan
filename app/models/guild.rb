@@ -1,7 +1,6 @@
 class Guild < ActiveRecord::Base
   has_permalink :name, :update => true
   xss_terminate
-  using_access_control
   
   validates_presence_of :name, :server, :game, :background_color
   validates_length_of :name, :within => 3..34
@@ -26,7 +25,8 @@ class Guild < ActiveRecord::Base
   
   has_many :movies, :dependent => :destroy
   has_many :events, :dependent => :destroy  
-  
+	has_many :photos, :dependent => :destroy
+	
   has_many :forums, :dependent => :destroy
   has_many :topics, :through => :forums
   

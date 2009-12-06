@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091203183557) do
+ActiveRecord::Schema.define(:version => 20091206200736) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -101,6 +101,19 @@ ActiveRecord::Schema.define(:version => 20091203183557) do
     t.string   "preview_content_type"
     t.integer  "preview_file_size"
     t.datetime "preview_updated_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "photos", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "guild_id"
+    t.string   "name"
+    t.string   "permalink"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

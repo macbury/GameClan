@@ -148,6 +148,9 @@ pl:
         description: "Opis"
       comment:
         body: "Treść"
+      photo:
+        name: "Nazwa"
+        image: "Obrazek"
     errors:
       template:
         header:
