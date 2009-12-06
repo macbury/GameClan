@@ -559,7 +559,7 @@ table.posts tr.spacer:last-child { display: none; }
 .calendar td:first-child { border-left: inherit; }
 .calendar .notmonth { opacity: 0.5; }
 .calendar .today { border: 2px solid #357CCB; }
-.calendar td:hover { background: #F9F9F9; }
+.calendar td:hover { background: #EFEFEF; }
 .calendar div { font-size: 9px; }
 
 .events > li { display: block; padding: 3px 5px; border-bottom:1px solid #ddd; }

@@ -27,6 +27,7 @@ class GuildsController < ApplicationController
     respond_to do |format|
       format.html
       format.xml  { render :xml => @guild }
+			format.rss
     end
   end
 

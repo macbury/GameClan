@@ -14,4 +14,8 @@ module ApplicationHelper
     image_tag user.avatar.url(size)
   end
   
+	def rss_link(title, path)
+    tag :link, :type => 'application/rss+xml', :title => title, :href => path
+  end
+
 end

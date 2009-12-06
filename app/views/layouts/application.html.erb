@@ -17,6 +17,7 @@
 				background-color: #<%= @guild.background_color %> !important; 
 			}
 		</style>
+		<%= rss_link(title, guild_url(:id => @guild.permalink, :format => :rss)) %>
 	<% end %>
 	<%= yield :head %>
 	<script src="http://www.wowhead.com/widgets/power.js"></script>
