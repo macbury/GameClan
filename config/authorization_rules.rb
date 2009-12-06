@@ -87,7 +87,11 @@ authorization do
     has_permission_on :posts, :to => :moderate do
       if_attribute :topic => { :forum => { :guild => { :moderators => contains { user } } } }
     end
-    #has_permission_on :guilds, :to => [:edit, :update]
+
+		has_permission_on [:memberships, :members], :to => [:accept, :not_accept, :delete, :destroy] do
+      if_attribute :guild => { :moderators => contains { user } }
+    end
+
   end
 
 end

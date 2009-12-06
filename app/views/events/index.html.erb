@@ -22,7 +22,7 @@
 	<div class="box">
 		<div class="calendar">
 			<% calendar_for(@events, :year => @month.year, :month => @month.month) do |t| %>
-				<%= t.head('pon', 'wto', 'śro', 'czw', 'pia', 'sob', 'nie') %>
+				<%= t.head('nie', 'pon', 'wto', 'śro', 'czw', 'pia', 'sob') %>
 				<% t.day do |day, events| %>
 					<abbr title="<%= day.xmlschema %>"><%= day.day %></abbr>
 					<% events.sort{ |a,b| a.when <=> b.when }.each do |event| %>

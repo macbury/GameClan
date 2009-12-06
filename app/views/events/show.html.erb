@@ -28,6 +28,12 @@
 				<%= simple_format(@event.description) %>
 			<% end %>
 			
+			<p class="text_center">
+				<% link_to "http://www.google.com/calendar/event?action=TEMPLATE&text=#{@event.what}&dates=#{to_google_calendar(@event.when)}/#{to_google_calendar(@event.when+1.hour)}&location=#{@event.where}&details=#{@event.description}&trp=true&sprop=website:#{guild_event_url(@guild, @event)}", :target => "_blank" do %>
+					<img src="http://www.google.com/calendar/images/ext/gc_button2_pl.gif" alt="Dodaj do Google Calendar" />
+				<% end %>
+			</p>
+			
 			<% if permitted_to? :edit, @event %>
 			<div class="text_right">
 				<div class="button special">
