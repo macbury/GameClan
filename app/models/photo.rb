@@ -10,7 +10,7 @@ class Photo < ActiveRecord::Base
   validates_presence_of :name
   validates_length_of :name, :within => 3..50
 
-	has_attached_file :image, :styles => { :small => "120x90#" },
+	has_attached_file :image, :styles => { :small => "120x90#", :preview => "560x420#" },
                     :url => "/guild_assets/photos/:style/:id.:extension",
                     :path => ":rails_root/public/guild_assets/photos/:style/:id.:extension"
 
@@ -20,5 +20,9 @@ class Photo < ActiveRecord::Base
 
 	def url(size=nil)
 		image.url(size)
+	end
+	
+	def to_param
+		permalink
 	end
 end

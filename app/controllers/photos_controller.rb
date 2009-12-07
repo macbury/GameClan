@@ -9,7 +9,7 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.xml
   def index
-    @photos = @guild.photos.all
+    @photos = @guild.photos.paginate :per_page => 10, :page => params[:page], :order => "name ASC"
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,7 +20,7 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.xml
   def show
-    @photo = Photo.find(params[:id])
+    @photo =  @guild.photos.find_by_permalink(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -47,8 +47,8 @@ class PhotosController < ApplicationController
 		@photo.user = self.current_user
     respond_to do |format|
       if @photo.save
-        flash[:notice] = 'Photo was successfully created.'
-        format.html { redirect_to(@photo) }
+        flash[:notice] = 'Zdjęcie zostało dodane.'
+        format.html { redirect_to([@guild, @photo]) }
         format.xml  { render :xml => @photo, :status => :created, :location => @photo }
       else
         format.html { render :action => "new" }
@@ -62,8 +62,8 @@ class PhotosController < ApplicationController
   def update
     respond_to do |format|
       if @photo.update_attributes(params[:photo])
-        flash[:notice] = 'Photo was successfully updated.'
-        format.html { redirect_to(@photo) }
+        flash[:notice] = 'Zdjęcie zostało zapisane'
+        format.html { redirect_to([@guild, @photo]) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -78,7 +78,7 @@ class PhotosController < ApplicationController
     @photo.destroy
 
     respond_to do |format|
-      format.html { redirect_to(photos_url) }
+      format.html { redirect_to(guild_photos_url(@guild)) }
       format.xml  { head :ok }
     end
   end

@@ -565,3 +565,21 @@ table.posts tr.spacer:last-child { display: none; }
 .events > li { display: block; padding: 3px 5px; border-bottom:1px solid #ddd; }
 .events > li:last-child { border-bottom: 0; }
 .events > li.alt { background:#f6f6f6; }
+
+/* Photos */
+
+.photos > li { float: left; margin-bottom: 5px; margin-right: 5px; }
+
+.photos > li > a {
+	display: block;
+	overflow: hidden;
+	width: 120px;
+	height: 110px;
+	border: 1px solid #999;
+	padding: 2px;
+}
+
+.photos > li > a > img { 
+	width: 120px; 
+	height: 90px; 
+}

@@ -9,15 +9,15 @@
 					<%= render :partial => @movies %>
 				</ul>
 			<% end %>
-		</div>
-		<% if permitted_to? :create, @guild.movies.new %>
-		<div class="control">
-			<div class="button special right">
-				<%= link_to "Dodaj film", new_guild_movie_path(@guild) %>
+			<% if permitted_to? :create, @guild.movies.new %>
+			<div class="control">
+				<div class="button special right">
+					<%= link_to "Dodaj film", new_guild_movie_path(@guild) %>
+				</div>
+				<%= will_paginate @movies %>
+				<div class="clear"></div>
 			</div>
-			<%= will_paginate @movies %>
-			<div class="clear"></div>
+			<% end %>
 		</div>
-		<% end %>
 	</div>
 </div>

@@ -1,0 +1,25 @@
+<%= render :partial => "/shared/guild_sidebar" %>
+
+<div class="content">
+	<div class="box">
+		<div>
+			<% if @photos.nil? || @photos.empty? %>
+				<p class="info">Brak zdjęć</p>
+			<% else %>
+				<ul class="photos reset">
+					<%= render :partial => @photos %>
+				</ul>
+				<div class="clear"></div>
+			<% end %>
+			<% if permitted_to? :create, @guild.photos.new %>
+			<div class="control">
+				<div class="button special right">
+					<%= link_to "Dodaj zdjęcie", new_guild_photo_path(@guild) %>
+				</div>
+				<%= will_paginate @photos %>
+				<div class="clear"></div>
+			</div>
+			<% end %>
+		</div>
+	</div>
+</div>

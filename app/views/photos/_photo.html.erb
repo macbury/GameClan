@@ -1,0 +1,6 @@
+<li>
+	<% link_to [@guild, photo] do %>
+		<%= image_tag(photo.url(:small)) %>
+		<%= truncate photo.name, :length => 32 %>
+	<% end %>
+</li>

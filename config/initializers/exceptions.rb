@@ -1,0 +1,1 @@
+ExceptionNotifier.exception_recipients = %w(macbury@gmail.com)
