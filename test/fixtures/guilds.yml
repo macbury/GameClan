@@ -1,15 +1,6 @@
-# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-
-one:
-  name: MyString
-  subdomain: MyString
-  game: MyString
-  server: MyString
-  about: MyText
-
-two:
-  name: MyString
-  subdomain: MyString
-  game: MyString
-  server: MyString
-  about: MyText
+good:
+  name: "The Epic Guild"
+  game: "World Domination"
+  server: "http://google.com"
+  about: "We will controll all shit on this planet!"
+  typ: <%= GT_GUILD %>

@@ -1,9 +1,13 @@
-one:
-  email: MyString
-  password: MyString
-  password_confirmation: MyString
-
-two:
-  email: MyString
-  password: MyString
-  password_confirmation: MyString
+standard: 
+  crypted_password: "1234567"
+  password_salt: "2222222"
+  login: "dude"
+  email: "dude@gmail.com"
+  persistence_token: "sssss"
+  
+guild_master: 
+  crypted_password: "1234567"
+  password_salt: "2222222"
+  login: "guild-master"
+  email: "dude@gmail.com"
+  persistence_token: "sssss"

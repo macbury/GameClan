@@ -3,8 +3,6 @@
 one:
   user_id: 1
   guild_id: 1
-  name: MyString
-  permalink: MyString
   image_file_name: MyString
   image_content_type: MyString
   image_file_size: 1
@@ -13,8 +11,6 @@ one:
 two:
   user_id: 1
   guild_id: 1
-  name: MyString
-  permalink: MyString
   image_file_name: MyString
   image_content_type: MyString
   image_file_size: 1
