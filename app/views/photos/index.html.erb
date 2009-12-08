@@ -1,6 +1,26 @@
 <%= render :partial => "/shared/guild_sidebar" %>
 
 <div class="content">
+	<% if permitted_to? :create, @guild.photos.new %>
+	<div class="box">
+		<div>
+			<fieldset>
+				<legend>Nowe zdjęcie</legend>
+				<% semantic_form_for([@guild, @photo], :html => { :multipart => true }) do |f| %>
+					<% f.inputs do %>
+						<%= f.input :image, :hint => "Rozmiar max. 1 MB" %>
+					
+						<div class="text_right">
+							<div class="button special">
+								<%= f.submit 'Wyślij' %>
+							</div>
+						</div>
+					<% end %>
+			<% end %>
+			</fieldset>
+		</div>
+	</div>
+	<% end %>
 	<div class="box">
 		<div>
 			<% if @photos.nil? || @photos.empty? %>
@@ -10,15 +30,6 @@
 					<%= render :partial => @photos %>
 				</ul>
 				<div class="clear"></div>
-			<% end %>
-			<% if permitted_to? :create, @guild.photos.new %>
-			<div class="control">
-				<div class="button special right">
-					<%= link_to "Dodaj zdjęcie", new_guild_photo_path(@guild) %>
-				</div>
-				<%= will_paginate @photos %>
-				<div class="clear"></div>
-			</div>
 			<% end %>
 		</div>
 	</div>

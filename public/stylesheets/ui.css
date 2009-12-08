@@ -573,13 +573,15 @@ table.posts tr.spacer:last-child { display: none; }
 .photos > li > a {
 	display: block;
 	overflow: hidden;
-	width: 120px;
-	height: 110px;
 	border: 1px solid #999;
 	padding: 2px;
+	width: 130px; 
+	height: 97px;
 }
 
-.photos > li > a > img { 
-	width: 120px; 
-	height: 90px; 
+.photos > li > a:hover {
+  border-bottom: 1px solid #7FAEFF; 
+  border-right: 1px solid #7FAEFF; 
+  border-left: 1px solid #4478A8;
+  border-top: 1px solid #4478A8;
 }

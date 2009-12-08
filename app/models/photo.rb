@@ -3,14 +3,10 @@ class Photo < ActiveRecord::Base
 	belongs_to :guild
 	
 	xss_terminate
-	has_permalink :name, :update => true
 
 	attr_protected :user_id, :guild_id
 
-  validates_presence_of :name
-  validates_length_of :name, :within => 3..50
-
-	has_attached_file :image, :styles => { :small => "120x90#", :preview => "560x420#" },
+	has_attached_file :image, :styles => { :small => "130x97#", :preview => "560x420#" },
                     :url => "/guild_assets/photos/:style/:id.:extension",
                     :path => ":rails_root/public/guild_assets/photos/:style/:id.:extension"
 
@@ -21,8 +17,5 @@ class Photo < ActiveRecord::Base
 	def url(size=nil)
 		image.url(size)
 	end
-	
-	def to_param
-		permalink
-	end
+
 end

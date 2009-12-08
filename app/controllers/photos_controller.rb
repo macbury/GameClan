@@ -5,12 +5,13 @@ class PhotosController < ApplicationController
   filter_access_to [:create, :new], :attribute_check => true, 
                                     :load_method => lambda { @photo = @guild.photos.new(params[:photo]) }
   filter_access_to [:edit, :destroy, :update], :attribute_check => true,
-                          :load_method => lambda { @photo = @guild.photos.find_by_permalink(params[:id]) }
+                          :load_method => lambda { @photo = @guild.photos.find(params[:id]) }
   # GET /photos
   # GET /photos.xml
   def index
-    @photos = @guild.photos.paginate :per_page => 10, :page => params[:page], :order => "name ASC"
-
+    @photos = @guild.photos.paginate :per_page => 10, :page => params[:page], :order => "created_at ASC"
+		@photo = @guild.photos.new
+		
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @photos }
@@ -20,25 +21,13 @@ class PhotosController < ApplicationController
   # GET /photos/1
   # GET /photos/1.xml
   def show
-    @photo =  @guild.photos.find_by_permalink(params[:id])
-
+    @photo = @guild.photos.find(params[:id])
+		@next = @guild.photos.first(:conditions => { :id.gt => @photo.id }, :order => 'created_at ASC')
+		@back = @guild.photos.first(:conditions => { :id.lt => @photo.id }, :order => 'created_at ASC')
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @photo }
     end
-  end
-
-  # GET /photos/new
-  # GET /photos/new.xml
-  def new
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @photo }
-    end
-  end
-
-  # GET /photos/1/edit
-  def edit
   end
 
   # POST /photos
@@ -51,7 +40,8 @@ class PhotosController < ApplicationController
         format.html { redirect_to([@guild, @photo]) }
         format.xml  { render :xml => @photo, :status => :created, :location => @photo }
       else
-        format.html { render :action => "new" }
+				flash[:error] = 'Nie można dodać zdjęcia.'
+        format.html { redirect_to([@guild, @photo]) }
         format.xml  { render :xml => @photo.errors, :status => :unprocessable_entity }
       end
     end

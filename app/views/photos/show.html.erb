@@ -1,8 +1,11 @@
 <%= render :partial => "/shared/guild_sidebar" %>
 <div class="content">
 	<div class="box">
-		<div>
-			<%= link_to "Zdjęcia", guild_photos_path(@guild) %> &#x2192; <%= content_tag :b, @photo.name %>
+		<div class="text_center">
+			<%= link_to "&#x2190; Wstecz", [@guild, @back], :class => 'left' unless @back.nil? %>
+			<b><%= link_to "Pokaż wszystkie", guild_photos_path(@guild) %></b>
+			<%= link_to "Dalej &#x2192;", [@guild, @next], :class => 'right' unless @next.nil? %>
+			<div class="clear"></div>
 		</div>
 	</div>
 	
