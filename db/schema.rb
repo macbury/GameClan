@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091208155801) do
+ActiveRecord::Schema.define(:version => 20091208163507) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "user_id"
@@ -17,6 +17,9 @@ ActiveRecord::Schema.define(:version => 20091208155801) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "assignments", ["role_id"], :name => "index_assignments_on_role_id"
+  add_index "assignments", ["user_id"], :name => "index_assignments_on_user_id"
 
   create_table "events", :force => true do |t|
     t.integer  "guild_id"
@@ -30,6 +33,9 @@ ActiveRecord::Schema.define(:version => 20091208155801) do
     t.datetime "updated_at"
   end
 
+  add_index "events", ["guild_id"], :name => "index_events_on_guild_id"
+  add_index "events", ["user_id"], :name => "index_events_on_user_id"
+
   create_table "forums", :force => true do |t|
     t.string   "name"
     t.integer  "guild_id"
@@ -40,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20091208155801) do
     t.datetime "updated_at"
     t.integer  "topics_count", :default => 0
   end
+
+  add_index "forums", ["guild_id"], :name => "index_forums_on_guild_id"
 
   create_table "guilds", :force => true do |t|
     t.string   "name"
@@ -63,6 +71,8 @@ ActiveRecord::Schema.define(:version => 20091208155801) do
     t.text     "guild_join_text",                      :default => "Napisz pokrótce, dlaczego akurat chciałbyś dołączyć do naszej gildii/klanu?"
   end
 
+  add_index "guilds", ["user_id"], :name => "index_guilds_on_user_id"
+
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "guild_id"
@@ -74,12 +84,18 @@ ActiveRecord::Schema.define(:version => 20091208155801) do
     t.string   "stats_link"
   end
 
+  add_index "memberships", ["guild_id"], :name => "index_memberships_on_guild_id"
+  add_index "memberships", ["user_id"], :name => "index_memberships_on_user_id"
+
   create_table "moderatorships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "guild_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "moderatorships", ["guild_id"], :name => "index_moderatorships_on_guild_id"
+  add_index "moderatorships", ["user_id"], :name => "index_moderatorships_on_user_id"
 
   create_table "movies", :force => true do |t|
     t.string   "title"
@@ -105,6 +121,9 @@ ActiveRecord::Schema.define(:version => 20091208155801) do
     t.datetime "updated_at"
   end
 
+  add_index "movies", ["guild_id"], :name => "index_movies_on_guild_id"
+  add_index "movies", ["user_id"], :name => "index_movies_on_user_id"
+
   create_table "photos", :force => true do |t|
     t.integer  "user_id"
     t.integer  "guild_id"
@@ -116,6 +135,9 @@ ActiveRecord::Schema.define(:version => 20091208155801) do
     t.datetime "updated_at"
   end
 
+  add_index "photos", ["guild_id"], :name => "index_photos_on_guild_id"
+  add_index "photos", ["user_id"], :name => "index_photos_on_user_id"
+
   create_table "posts", :force => true do |t|
     t.integer  "topic_id"
     t.integer  "user_id"
@@ -123,6 +145,9 @@ ActiveRecord::Schema.define(:version => 20091208155801) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "posts", ["topic_id"], :name => "index_posts_on_topic_id"
+  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -143,6 +168,10 @@ ActiveRecord::Schema.define(:version => 20091208155801) do
     t.integer  "posts_count",   :default => 0
     t.integer  "replied_by_id"
   end
+
+  add_index "topics", ["forum_id"], :name => "index_topics_on_forum_id"
+  add_index "topics", ["replied_by_id"], :name => "index_topics_on_replied_by_id"
+  add_index "topics", ["user_id"], :name => "index_topics_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "login"

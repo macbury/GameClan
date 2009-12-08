@@ -1,6 +1,6 @@
 authorization do
   role :admin do
-    has_permission_on [:guilds, :members, :topic, :posts, :users, :moderatorships, :movies, :events, :photos], :to => :act_as_god
+    has_permission_on [:guilds, :members, :topic, :posts, :users, :moderatorships, :movies, :events, :photos, :base], :to => :act_as_god
     has_permission_on :authorization_rules, :to => :read
   end
   
