@@ -15,6 +15,12 @@ class Topic < ActiveRecord::Base
   
   attr_protected :user_id, :forum_id
   
+	after_create :mail_notification
+	
+	def mail_notification
+		BackgroundWorker.asynch_deliver_topic_notification(:topic_id => self.id)
+	end
+
   def to_param
     permalink
   end

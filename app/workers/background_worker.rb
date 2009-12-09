@@ -43,7 +43,8 @@ class BackgroundWorker < Workling::Base
     movie.duration = hour + min + sec
     
     movie.processing = false
-    
+    movie.mail_notification
+
     movie.save
     
     File.delete(output_file)
@@ -76,4 +77,31 @@ class BackgroundWorker < Workling::Base
     end
   end
   
+  def deliver_photo_notification(options)
+    photo = Photo.find(options[:photo_id])
+    recipients = photo.guild.members.all(:conditions => { :notification_photos => true })
+
+    recipients.each do |recipient|
+      Mailer.deliver_photo(photo,recipient)
+    end
+  end
+	
+	def deliver_movie_notification(options)
+    movie = Movie.find(options[:movie_id])
+    recipients = movie.guild.members.all(:conditions => { :notification_movies => true })
+
+    recipients.each do |recipient|
+      Mailer.deliver_movie(movie,recipient)
+    end
+  end
+	
+	def deliver_topic_notification(options)
+    topic = Topic.find(options[:topic_id])
+    recipients = topic.forum.guild.members.all(:conditions => { :notification_posts => true })
+
+    recipients.each do |recipient|
+      Mailer.deliver_topic(topic,recipient)
+    end
+  end
+	
 end

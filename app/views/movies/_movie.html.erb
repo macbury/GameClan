@@ -1,5 +1,5 @@
 <li>
-	<% link_to [@guild, movie] do %>
+	<% link_to @guild.nil? ? [movie.guild, movie] : [@guild, movie] do %>
 		<%= image_tag(movie.preview.url(:small)) %>
 		<!--><span class="time">
 			<span><%= format_time(movie.duration) %></span>
@@ -7,8 +7,8 @@
 	<% end %>
 	<div>
 		<h4>
-			<%= link_to movie.title, [@guild, movie] %>
-			<% if permitted_to? :edit, movie %>
+			<%= link_to movie.title, @guild.nil? ? [movie.guild, movie] : [@guild, movie] %>
+			<% if permitted_to?(:edit, movie) && !@guild.nil? %>
 			(
 				<%= link_to "Edytuj", edit_guild_movie_path(@guild, movie) %> | 
 				<%= link_to "Usuń", [@guild, movie], :method => :delete, :confirm => "Czy na pewno chcesz usunąć ten film?" %>

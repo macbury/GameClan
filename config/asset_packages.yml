@@ -1,0 +1,22 @@
+--- 
+javascripts: 
+- base: 
+  - rails
+  - moderators
+  - jquery.min
+  - jquery.Jcrop.min
+  - jquery.autogrow
+  - jquery-ui.min
+  - flowplayer.min
+  - facebox
+  - colorpicker
+  - application
+stylesheets: 
+- base: 
+  - colorpicker
+  - facebox
+  - formtastic
+  - formtastic_changes
+  - jquery.Jcrop
+  - scaffold
+  - ui

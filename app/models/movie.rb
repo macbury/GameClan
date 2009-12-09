@@ -24,9 +24,12 @@ class Movie < ActiveRecord::Base
                     :path => ":rails_root/public/guild_assets/videos/previews/:style/:id.:extension"
   
   after_create :process_clip
-  
   attr_protected :user_id, :guild_id
-  
+
+	def mail_notification
+		BackgroundWorker.asynch_deliver_movie_notification(:movie_id => self.id)
+	end
+
   def process_clip
     BackgroundWorker.asynch_convert(:movie_id => self.id)
   end

@@ -23,9 +23,36 @@ class Mailer < ActionMailer::Base
 	
 	def event(event, user)
 		setup_email(user)
-		@subject = "[#{event.guild.name} - Wydarzenie] #{event.what}"
+		@subject = "[#{event.guild.name}] użytkownik #{user.login} dodał nowe wydarzenie"
 		@body[:event] = event
 		@body[:event_url] = guild_event_url(event.guild, event)
+		@body[:user] = user
+		@body[:user_config] = edit_user_url(user)
+	end
+	
+	def photo(photo, user)
+		setup_email(user)
+		@subject = "[#{photo.guild.name}] użytkownik #{user.login} dodał nowe zdjęcie"
+		@body[:photo] = photo
+		@body[:photo_url] = guild_photo_url(photo.guild, photo)
+		@body[:user] = user
+		@body[:user_config] = edit_user_url(user)
+	end
+	
+	def movie(movie, user)
+		setup_email(user)
+		@subject = "[#{photo.guild.name}] użytkownik #{user.login} dodał nowy film"
+		@body[:movie] = movie
+		@body[:movie_url] = guild_movie_url(movie.guild, movie)
+		@body[:user] = user
+		@body[:user_config] = edit_user_url(user)
+	end
+	
+	def topic(topic, user)
+		setup_email(user)
+		@subject = "[#{topic.guild.name}] Nowy post w wątku: '#{topic.title}'"
+		@body[:topic] = photo
+		@body[:topic_url] = guild_forum_topic_url(topic.guild, topic.forum, topic)
 		@body[:user] = user
 		@body[:user_config] = edit_user_url(user)
 	end

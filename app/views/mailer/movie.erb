@@ -1,0 +1,10 @@
+Witaj,
+
+Użytkownik <%= @user.login %> dodał nowy film pod tytułem: <%= @movie.title %>
+<%= @movie.description -%>
+
+Zobacz więcej: <%= @movie_url %>
+
+Otrzymujesz ten email, ponieważ masz włączoną opcję notyfikacji. Aby zmienić
+ustawienia lub wyłączyć notyfikacje wejdź na stronę:
+<%= @user_config_path %>

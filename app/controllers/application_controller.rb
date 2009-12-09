@@ -69,7 +69,7 @@ class ApplicationController < ActionController::Base
   end
   
   def redirect_back_or_default
-    redirect_to session[:return_to] || root_path
+    redirect_to session[:return_to] || self.current_user
     session[:return_to] = nil
   end
   

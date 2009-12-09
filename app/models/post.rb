@@ -9,4 +9,10 @@ class Post < ActiveRecord::Base
   
   attr_protected :user_id, :topic_id
   
+	after_create :mail_notification
+	
+	def mail_notification
+		BackgroundWorker.asynch_deliver_topic_notification(:topic_id => self.topic.id, :post_id => self.id)
+	end
+
 end

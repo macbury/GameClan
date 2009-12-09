@@ -13,7 +13,13 @@ class Photo < ActiveRecord::Base
   validates_attachment_content_type :image, :content_type => ['image/jpeg', 'image/png'], :message => "nieprawidłowy format pliku"
   validates_attachment_size :image, :less_than => 1.megabyte
   validates_attachment_presence :image
-
+	
+	after_create :mail_notification
+	
+	def mail_notification
+		BackgroundWorker.asynch_deliver_photo_notification(:photo_id => self.id)
+	end
+	
 	def url(size=nil)
 		image.url(size)
 	end
