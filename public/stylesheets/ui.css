@@ -351,6 +351,8 @@ table.posts tr.spacer:last-child { display: none; }
 	vertical-align:top;
 }
 
+.post .body img { max-width: 320px; max-height: 240px; display: block; margin: 5px auto; }
+
 .post .author .posts,
 .post .author .admin {
 	display:block;
@@ -585,3 +587,5 @@ table.posts tr.spacer:last-child { display: none; }
   border-left: 1px solid #4478A8;
   border-top: 1px solid #4478A8;
 }
+
+#forum_link { width: 380px; }

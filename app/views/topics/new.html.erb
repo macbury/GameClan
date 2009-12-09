@@ -6,10 +6,14 @@
 				<% semantic_form_for([@guild, @forum, @topic]) do |f| %>
 					<% f.inputs do %>
 						<%= f.input :title if @topic.new_record? %>
-						<%= f.input :body, :hint => '*strong* | # lista numerowana | * lista wypunktowana | _em_ | __italic__ | "link":http:// | bq. cytat.' %>
+						<%#= f.input :body, :hint => '*strong* | # lista numerowana | * lista wypunktowana | _em_ | __italic__ | "link":http:// | bq. cytat.' %>
 						<%= f.input :sticky if @topic.new_record? %>
 					<% end %>
-				
+					
+					<%= f.text_area :body %>
+					
+					<%= content_tag :p, @topic.errors.on(:body).join(', '), :style => "color:red" unless @topic.errors.on(:body).nil? %>
+					
 					<div class="text_right">
 						<div class="button special">
 							<%= f.submit @topic.new_record? ? "Dodaj" : "Zapisz" %>

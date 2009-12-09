@@ -6,7 +6,7 @@ class Photo < ActiveRecord::Base
 
 	attr_protected :user_id, :guild_id
 
-	has_attached_file :image, :styles => { :small => "130x97#", :preview => "560x420#" },
+	has_attached_file :image, :styles => { :small => "130x97#", :preview => "560x420#", :forum => "320x240#" },
                     :url => "/guild_assets/photos/:style/:id.:extension",
                     :path => ":rails_root/public/guild_assets/photos/:style/:id.:extension"
 

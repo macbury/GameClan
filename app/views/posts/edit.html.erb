@@ -4,16 +4,18 @@
 			<fieldset>
 				<legend>Odpowiedź</legend>
 				<% semantic_form_for([@guild, @forum, @topic, @post]) do |f| %>
-					<% f.inputs do %>
-						<%= f.input :body, :hint => '*strong* | # lista numerowana | * lista wypunktowana | _em_ | __italic__ | "link":http:// | bq. cytat.' %>
-					<% end %>
-				
+					<%# f.inputs do %>
+						<%#= f.input :body, :hint => '*strong* | # lista numerowana | * lista wypunktowana | _em_ | __italic__ | "link":http:// | bq. cytat.' %>
+					<%# end %>
+					<%= f.text_area :body %>
+					
+					<%= content_tag :p, @post.errors.on(:body).join(', '), :style => "color:red" unless @post.errors.on(:body).nil? %>
 					<div class="text_right">
 						<div class="button special">
-							<%= f.submit @topic.new_record? ? "Dodaj" : "Zapisz" %>
+							<%= f.submit @post.new_record? ? "Dodaj" : "Zapisz" %>
 						</div>
 						<div class="button white">
-							<%= link_to 'Anuluj', @topic.new_record? ? guild_forum_path(@guild, @forum) : [@guild, @forum, @topic] %>
+							<%= link_to 'Anuluj', @post.new_record? ? guild_forum_path(@guild, @forum) : [@guild, @forum, @topic] %>
 						</div>
 					</div>
 				<% end %>

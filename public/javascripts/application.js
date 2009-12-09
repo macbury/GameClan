@@ -24,7 +24,14 @@ $(document).ready(function () {
 		$('.flash_notice, .flash_error').slideUp()
 	}, 10000)
 	
+	$('#topic_body, #post_body').markItUp(mySettings, { previewAutoRefresh:false });
+	
 	$('textarea').autogrow({
-		lineHeight: 16
+		lineHeight: 18
+	});
+	
+	$('#forum_link').click(function () {
+		this.focus();
+		this.select();
 	});
 });

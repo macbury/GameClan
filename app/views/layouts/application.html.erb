@@ -8,8 +8,10 @@
 	<meta name="viewport" content="width=900" />
 	
 	<%= stylesheet_link_tag 'formtastic', 'formtastic_changes', 'ui', 'colorpicker', 'facebox' %>
+	<link rel="stylesheet" type="text/css" href="/javascripts/markitup/skins/simple/style.css" />
+	<link rel="stylesheet" type="text/css" href="/javascripts/markitup/sets/textile/style.css" />
 	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
-	<%= javascript_include_tag 'jquery.min.js', 'rails', 'colorpicker', 'application', 'facebox', 'jquery-ui.min.js', 'moderators', 'flowplayer.min', 'jquery.autogrow' %>
+	<%= javascript_include_tag 'jquery.min.js', 'rails', 'colorpicker', 'application', 'facebox', 'jquery-ui.min.js', 'moderators', 'flowplayer.min', 'jquery.autogrow', 'markitup/jquery.markitup.pack.js', 'markitup/sets/textile/set.js' %>
 	<% if !@guild.nil? && !@guild.new_record? %>
 		<style type="text/css" media="screen">
 			body { 
@@ -20,6 +22,7 @@
 		<%= rss_link(title, guild_url(:id => @guild.permalink, :format => :rss)) %>
 	<% end %>
 	<%= yield :head %>
+	
 	<script src="http://www.wowhead.com/widgets/power.js"></script>
   <script src="http://i.thottbot.com/power.js"></script>
   <script src="http://www.wowdb.com/js/extooltips.js"></script>
