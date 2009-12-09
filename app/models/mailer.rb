@@ -20,7 +20,16 @@ class Mailer < ActionMailer::Base
     
     @body[:url] = "#{url}#comment_#{comment.id}"
   end
-
+	
+	def event(event, user)
+		setup_email(user)
+		@subject = "[#{event.guild.name} - Wydarzenie] #{event.what}"
+		@body[:event] = event
+		@body[:event_url] = guild_event_url(event.guild, event)
+		@body[:user] = user
+		@body[:user_config] = edit_user_url(user)
+	end
+	
   protected
     
     def setup_email(user)

@@ -12,6 +12,12 @@ class Event < ActiveRecord::Base
   validates_length_of :where, :within => 0..255
   validates_length_of :description, :within => 0..512
   
+	after_create :mail_notification
+	
+	def mail_notification
+		BackgroundWorker.asynch_deliver_event_notification(:event_id => self.id)
+	end
+	
   def date
     read_attribute :when
   end

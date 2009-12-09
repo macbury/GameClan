@@ -67,12 +67,12 @@ class BackgroundWorker < Workling::Base
     
   end
   
-  def send_event_reminder
-    events = Event.all(:conditions => ["events.when <= ? AND events.when >= ?", 10.minutes.from_now, Time.now])
-    
-    events.each do |event|
-      recipients = event.guild.members
-      
+  def deliver_event_notification(options)
+    event = Event.find(options[:event_id])
+    recipients = event.guild.members.all(:conditions => { :notification_events => true })
+
+    recipients.each do |recipient|
+      Mailer.deliver_event(event,recipient)
     end
   end
   

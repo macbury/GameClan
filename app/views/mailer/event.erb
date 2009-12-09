@@ -1,0 +1,20 @@
+Witaj,
+
+Oto szczegóły nadchodzącego wydarzenia:
+
+<%= @event.what %>:
+<%- if @event.when > Time.now -%>
+odbędzie się za <%= distance_of_time_in_words_to_now(@event.when) %>(<%= I18n.l @event.when, :format => :long -%>)
+<%- else -%>
+odbyło się <%= distance_of_time_in_words_to_now(@event.when) %> temu(<%= I18n.l @event.when, :format => :long -%>)
+<%- end -%>
+<%- unless @event.where.nil? || !@event.where.blank? -%>
+w <%= @event.where -%>
+<%- end -%>.
+<%= @event.description -%>
+
+Więcej informacji: <%= @event_url %>
+
+Otrzymujesz ten email, ponieważ masz włączoną opcję notyfikacji. Aby zmienić
+ustawienia lub wyłączyć notyfikacje wejdź na stronę:
+<%= @user_config_path %>
