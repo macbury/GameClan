@@ -50,9 +50,9 @@ class Guild < ActiveRecord::Base
   validates_attachment_content_type :logo, :content_type => ['image/jpeg', 'image/png']
   
   before_save :set_theme
-  after_create :join_guild
+  after_create :assign_to_guild
   
-  def join_guild
+  def assign_to_guild
     member = Membership.find_or_initialize_by_user_id_and_guild_id(self.user_id, self.id)
     member.save(false)
     member.accept!(false)
@@ -69,7 +69,7 @@ class Guild < ActiveRecord::Base
     self.user.id == user.id
   end
   
-  def isGuildModerator(user)
+  def isGuildModerator?(user)
     !self.moderators.find(user.id).nil?
   end
   

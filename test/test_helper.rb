@@ -3,6 +3,7 @@ require File.expand_path(File.dirname(__FILE__) + "/../config/environment")
 require 'test_help'
 
 class ActiveSupport::TestCase
+	include Authorization::TestHelper
   # Transactional fixtures accelerate your tests by wrapping each test method
   # in a transaction that's rolled back on completion.  This ensures that the
   # test database remains unchanged so your fixtures don't have to be reloaded
@@ -33,6 +34,21 @@ class ActiveSupport::TestCase
   # Note: You'll currently still have to declare fixtures explicitly in integration tests
   # -- they do not yet inherit this setting
   fixtures :all
-
+	
+	protected
+	
+	def create_guild(user)
+		return user.guilds.create(
+			:name => "The Epic Guild"+(rand+999).to_s,
+		  :game => "World Domination",
+		  :server => "http://google.com",
+		  :about => "We will controll all shit on this planet!",
+		  :typ => GT_GUILD
+		)
+	end
+	
+	def create_user(options = {})
+    record = User.create({ :login => 'dude'+(rand+999).to_s, :email => 'dude@example.com', :password => 'this_is_booring_password', :password_confirmation => 'this_is_booring_password', "terms_of_service"=>"1" }.merge(options))
+  end
   # Add more helper methods to be used by all tests here...
 end

@@ -6,6 +6,9 @@ class User < ActiveRecord::Base
   validates_attachment_size :avatar, :less_than => 500.kilobytes
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
   
+	attr_protected :roles, :assignments
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :terms_of_service
+
   has_many :guilds, :dependent => :destroy
   
   has_many :memberships, :dependent => :destroy
@@ -25,11 +28,9 @@ class User < ActiveRecord::Base
   #validates_length_of :full_name, :within => 0..255
   #validates_length_of :www, :within => 0..255
   validates_format_of :www, :with =>  /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
-  
-  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h
+  validates_acceptance_of :terms_of_service, :on => :create
+
   after_update :reprocess_avatar, :if => :cropping?
-  
-  attr_protected :roles, :assignments
   
   def cropping?
     !crop_x.blank? && !crop_y.blank? && !crop_w.blank? && !crop_h.blank?

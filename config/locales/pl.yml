@@ -113,6 +113,7 @@ pl:
         password_confirmation: "Powtórz hasło"
         www: "Strona WWW"
         full_name: "Imie i Nazwisko"
+        terms_of_service: "Regulamin"
       movie:
         title: "Tytuł"
         description: "Opis"

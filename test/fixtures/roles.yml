@@ -1,7 +1,10 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
-one:
-  name: MyString
+1:
+  name: Guild-Master
 
-two:
-  name: MyString
+2:
+  name: Guild-Member
+
+3:
+  name: Guild-Moderator

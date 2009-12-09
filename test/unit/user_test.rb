@@ -20,10 +20,4 @@ class UserTest < ActiveSupport::TestCase
     assert create_user(:terms_of_service => false).errors.on(:terms_of_service)
   end
 
-	protected
-	  def create_user(options = {})
-	    record = User.new({ :login => 'dude', :email => 'dude@example.com', :password => 'this_is_booring_password', :password_confirmation => 'this_is_booring_password', "terms_of_service"=>"1" }.merge(options))
-	    record.save
-	    record
-	  end
 end

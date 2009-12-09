@@ -1,17 +1,27 @@
-<fieldset>
-	<legend>Rejestracja:</legend>
-<% semantic_form_for @user do |f| %>
-	<% f.inputs do %>
-		<%= f.input :login %>
-		<%= f.input :email %>
-		<%= f.input :password %>
-		<%= f.input :password_confirmation %>
-	<% end %>
-
-  <div style="text-align: right">
-  	<div class="button">
-  		<%= f.submit "Utwórz konto" %>
-  	</div>
-  </div>
-<% end %>
-</fieldset>
+<div class="content center">
+	<div class="box">
+		<div>
+			<fieldset>
+				<legend>Rejestracja:</legend>
+			<% semantic_form_for @user do |f| %>
+				<% f.inputs do %>
+					<%= f.input :login %>
+					<%= f.input :email %>
+					<%= f.input :password %>
+					<%= f.input :password_confirmation %>
+					<%= f.input :terms_of_service, :as => :boolean %>
+				<% end %>
+				<h3>Regulamin</h3>
+				<code>
+					Bądź sympatyczna/y i tolerancyjna/y - WARTO!A poza tym musisz wiedzieć, że:Wszystkie treści publikowane w serwisie należą i wyrażają zdanie ich autorów i niekoniecznie pokrywają się ze zdaniem administratora serwisu.Rejestrując się w tym serwisie zgadzasz się przestrzegać regulamin - publikacja treści obscenicznej, wulgarnej oraz takiej która narusza obowiązujące przepisy prawa jest ZABRONIONA.Administrator serwisu zastrzega sobie prawo do usuwania poszczególnych wpisów oraz usunięcia konta użytkownika bez podania przyczyny.
+				</code>
+			  <div style="text-align: right">
+			  	<div class="button">
+			  		<%= f.submit "Utwórz konto" %>
+			  	</div>
+			  </div>
+			<% end %>
+			</fieldset>
+		</div>
+	</div>
+</div>

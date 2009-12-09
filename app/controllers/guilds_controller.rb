@@ -54,7 +54,7 @@ class GuildsController < ApplicationController
 
     respond_to do |format|
       if @guild.save
-        flash[:notice] = 'Guild was successfully created.'
+        flash[:notice] = 'Gildia została stworzona'
         format.html { redirect_to(@guild) }
         format.xml  { render :xml => @guild, :status => :created, :location => @guild }
       else
