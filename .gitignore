@@ -10,3 +10,5 @@ public/system/**/*
 public/guild_assets/videos/**/*
 public/guild_assets/photos/**/*
 public/system/**/*
+public/javascripts/base_packaged.js
+public/stylesheets/base_packaged.css
