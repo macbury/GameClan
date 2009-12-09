@@ -97,12 +97,6 @@ form.formtastic fieldset ol li.text textarea { width:74%; }
 form.formtastic fieldset ol li.hidden { display:none; }
 
 
-/* BOOLEAN OVERRIDES
---------------------------------------------------------------------------------------------------*/
-form.formtastic fieldset ol li.boolean label { padding-left:25%; width:auto; }
-form.formtastic fieldset ol li.boolean label input { margin:0 0.5em 0 0.2em; }
-
-
 /* RADIO OVERRIDES
 --------------------------------------------------------------------------------------------------*/
 form.formtastic fieldset ol li.radio { }
@@ -135,3 +129,10 @@ form.formtastic fieldset ol li.datetime fieldset ol li label { display:none; }
 form.formtastic fieldset ol li.date fieldset ol li label input, 
 form.formtastic fieldset ol li.time fieldset ol li label input, 
 form.formtastic fieldset ol li.datetime fieldset ol li label input { display:inline; margin:0; padding:0;  }
+
+
+/* BOOLEAN OVERRIDES
+--------------------------------------------------------------------------------------------------*/
+form.formtastic fieldset ol li.boolean label { padding-left:25%; width:auto !important; }
+form.formtastic fieldset ol li.boolean label input { margin:0 0.5em 0 0.2em; }
+form.formtastic fieldset ol li.boolean { margin-bottom: 2px; }

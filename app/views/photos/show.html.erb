@@ -11,19 +11,20 @@
 	
 	<div class="box">
 		<div class="text_center">
-			<%= link_to image_tag(@photo.url(:preview)), @photo.url, :target => "_blank" %><br/>
-			<label for="forum_link">Link na forum:</label>
-			<%= text_field_tag 'forum_link', "\"!#{@photo.url(:forum)}(Textist)!\":#{guild_photo_url(@guild, @photo)}", :readonly=>true %>
-		</div>
-	</div>
-	
-	<% if permitted_to? :edit, @photo %>
-	<div class="box">
-		<div class="text_center">
+			<%= link_to image_tag(@photo.url(:preview)), @photo.url, :target => "_blank" %>
+			<p>
+				<label for="forum_link">Link na forum:</label>
+				<%= text_field_tag 'forum_link', "\"!#{@photo.url(:forum)}(Textist)!\":#{guild_photo_url(@guild, @photo)}", :readonly=>true %>
+			</p>
+			<p>
+				Dodane przez: <%= link_to @photo.user.login, @photo.user %>
+			</p>
+			<% if permitted_to? :edit, @photo %>
 			<div class="button">
-				<%= link_to "Usuń", [@guild, @photo], :method => :delete, :confirm => "Czy na pewno chcesz usunąć te zdjęcie?" %>
+				<%= link_to "Usuń zdjęcie", [@guild, @photo], :method => :delete, :confirm => "Czy na pewno chcesz usunąć te zdjęcie?" %>
 			</div>
+			<% end %>
 		</div>
 	</div>
-	<% end %>
+
 </div>

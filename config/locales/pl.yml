@@ -114,6 +114,12 @@ pl:
         www: "Strona WWW"
         full_name: "Imie i Nazwisko"
         terms_of_service: "Regulamin"
+        gg: "Gadu Gadu"
+        jabber: "Jabber/Tlen"
+        notification_posts: "Wpisach na forum"
+        notification_photos: "Dodanych zdjęciach"
+        notification_movies: "Dodanych filmach"
+        notification_events: "Nowych wydarzeniach"
       movie:
         title: "Tytuł"
         description: "Opis"

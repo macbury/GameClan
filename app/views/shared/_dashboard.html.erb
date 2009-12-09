@@ -1,0 +1,61 @@
+<div class="box">
+	<div>
+		<table class="forum">
+			<thead>
+				<tr>
+					<th>Ostatnie tematy na forum</th>
+					<th width="100px" class="text_center">Odpowiedzi</th>
+					<th width="150px" class="text_center">Ostatni post</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% if @topics.nil? || @topics.empty? %>
+					<tr>
+						<td class="info" colspan="3">Brak tematów na forum</td>
+					</tr>
+				<% else %>
+					<%= render :partial => @topics %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<% unless @movies.nil? || @movies.empty? %>
+<div class="box">
+	<div>
+		<h3>Ostatnio dodane filmy</h3>
+		<ul class="movies reset">
+			<%= render :partial => @movies %>
+		</ul>
+	</div>
+</div>
+<% end %>
+
+<% unless @photos.nil? || @photos.empty? %>
+<div class="box">
+	<div>
+		<h3>Ostatnio dodane zdjęcia</h3>
+		<ul class="photos reset">
+			<%= render :partial => @photos %>
+		</ul>
+		<div class="clear"></div>
+	</div>
+</div>
+<% end %>
+
+<% unless @events.nil? || @events.empty? %>
+<div class="box">
+	<div>
+		<h3>Zbliżające się wydarzenia</h3>
+		<ul class="reset events">
+			<% @events.each do |event| %>
+				<li class="<%= cycle('normal', 'alt') %>">
+					<%= link_to event.what, @guild.nil? ? [event.guild, event] : [@guild, event] %> za <%= distance_of_time_in_words_to_now(event.when) %>
+				</li>
+			<% end %>
+		</ul>
+		
+	</div>
+</div>
+<% end %>

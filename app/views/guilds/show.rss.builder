@@ -35,5 +35,15 @@ xml.rss :version => "2.0" do
       end
     end
 		
+		for photo in @photos
+      xml.item do
+        xml.title "[Zdjęcie] - ##{photo.id}"
+        xml.description image_tag(photo.image.url(:forum))
+        xml.pubDate photo.created_at.to_s(:rfc822)
+        xml.link guild_event_url(@guild, photo)
+        xml.guid guild_event_url(@guild, photo)
+      end
+    end
+		
   end
 end

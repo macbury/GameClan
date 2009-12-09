@@ -21,6 +21,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by_login(params[:id])
     @topics = Topic.all(:limit => 10, :include => [:user, {:forum => :guild}, :replied_by], :conditions => ["topics.user_id = ? OR topics.replied_by_id = ?", @user.id, @user.id], :order => 'updated_at DESC' )
+
+    @movies = @user.movies.all(:order=>"created_at DESC", :limit => 5)
+    @events = @user.events.all(:order=>"events.when ASC", :conditions => { :when.gte => Time.now }, :limit => 10)
+    @photos = @user.photos.all(:order=>"created_at DESC", :limit => 8)
   end
   
   def edit

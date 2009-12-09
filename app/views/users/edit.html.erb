@@ -7,7 +7,15 @@
 					<% f.inputs do %>
 						<%= f.inputs :full_name %>
 						<%= f.inputs :www %>
+						<%= f.inputs :gg %>
+						<%= f.inputs :jabber %>
 						<%= f.input :avatar %>
+						
+						<h2>Powiadamiaj mnie o:</h2>
+						<%= f.inputs :notification_posts %>
+						<%= f.inputs :notification_photos %>
+						<%= f.inputs :notification_movies %>
+						<%= f.inputs :notification_events %>
 					<% end %>
 					<div class="text_right">
 						<div class="button">

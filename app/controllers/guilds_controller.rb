@@ -23,7 +23,8 @@ class GuildsController < ApplicationController
     @topics = @guild.topics.all(:order=>"updated_at DESC", :include => [:user, :forum, :replied_by], :limit => 10)
     @movies = @guild.movies.all(:order=>"created_at DESC", :include => [:user], :limit => 5)
     @events = @guild.events.all(:order=>"events.when ASC", :conditions => { :when.gte => Time.now }, :limit => 10)
-    
+    @photos = @guild.photos.all(:order=>"created_at DESC", :limit => 8)
+
     respond_to do |format|
       format.html
       format.xml  { render :xml => @guild }

@@ -23,7 +23,7 @@ class PhotosController < ApplicationController
   def show
     @photo = @guild.photos.find(params[:id])
 		@next = @guild.photos.first(:conditions => { :id.gt => @photo.id }, :order => 'created_at ASC')
-		@back = @guild.photos.first(:conditions => { :id.lt => @photo.id }, :order => 'created_at ASC')
+		@back = @guild.photos.first(:conditions => { :id.lt => @photo.id }, :order => 'created_at DESC')
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @photo }

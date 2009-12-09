@@ -12,6 +12,18 @@
 			<dt>WWW:</dt>
 			<dd><%= link_to @user.www, @user.www %></dd>
 			<% end %>
+			<% unless @user.gg.nil? %>
+			<dt>Gadu Gadu:</dt>
+			<dd>
+				<%= link_to image_tag("http://status.gadu-gadu.pl/users/status.asp?id=#{@user.gg}&styl=3"), "gg:#{@user.gg}" %>
+			</dd>
+			<% end %>
+			<% unless @user.jabber.nil? || @user.jabber.empty? %>
+			<dt>Jabber/Tlen:</dt>
+			<dd>
+				<%= link_to @user.jabber, @user.jabber %>
+			</dd>
+			<% end %>
 			<% unless @user.guild_member.nil? || @user.guild_member.empty? %>
 			<dt>Gildie/Klany:</dt>
 			<dl>
@@ -26,20 +38,5 @@
 	</div>
 </div>
 <div class="content">
-	<div class="box">
-		<div>
-			<table class="forum">
-				<thead>
-					<tr>
-						<th>Ostatnie wpisy na forum</th>
-						<th width="100px" class="text_center">Odpowiedzi</th>
-						<th width="150px" class="text_center">Ostatni post</th>
-					</tr>
-				</thead>
-				<tbody>
-					<%= render :partial => @topics %>
-				</tbody>
-			</table>
-		</div>
-	</div>
+	<%= render :partial => "/shared/dashboard" %>
 </div>

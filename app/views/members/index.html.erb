@@ -10,7 +10,6 @@
 						<th width="16px"> </th>
 						<th>Postać</th>
 						<th width="25%">Profil</th>
-						<th width="25%">Ranga</th>
 						<th width="25%">Dołączył(a)</th>
 					</tr>
 				</thead>
@@ -23,7 +22,7 @@
 						<td><%= link_to member.game_nick, member.stats_link, :target => "_blank" %></td>
 						<td><%= link_to member.user.login, member.user %></td>
 						<% unless member.accepted %>
-						<td colspan="2" class="text_center">
+						<td class="text_center">
 							<% if permitted_to? :accept, member %>
 								<div class="button special">
 									<%= link_to "Akceptuj", accept_guild_member_path(@guild, member) %>
@@ -39,7 +38,6 @@
 							<% end %>
 						</td>
 						<% else %>
-						<td></td>
 						<td><%= I18n.l member.created_at.to_date %></td>
 						<% end %>
 					</tr>
