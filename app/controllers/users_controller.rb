@@ -20,11 +20,14 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by_login(params[:id])
-    @topics = Topic.all(:limit => 10, :include => [:user, {:forum => :guild}, :replied_by], :conditions => ["topics.user_id = ? OR topics.replied_by_id = ?", @user.id, @user.id], :order => 'updated_at DESC' )
+		@guilds = @user.guild_member.all(:order => "name ASC")
+		guilds_id = @guilds.map(&:id)
+		
+		@topics = Topic.all(:limit => 10, :include => [:user, {:forum => :guild}, :replied_by], :conditions => ["guilds.id IN (?)", guilds_id], :order => 'topics.updated_at DESC')
+		@movies = Movie.all( :order=>"created_at DESC", :limit => 5, :joins => [:guild], :conditions => ["guilds.id IN (?)", guilds_id])
+		@events = Event.all( :order=> "events.when ASC", :limit => 10, :joins => [:guild], :conditions => ["guilds.id IN (?) AND events.when >= ?", guilds_id, Time.now])
+		@photos = Photo.all( :order=>"created_at DESC", :limit => 8, :joins => [:guild], :conditions => ["guilds.id IN (?)", guilds_id])
 
-    @movies = @user.movies.all(:order=>"created_at DESC", :limit => 5)
-    @events = @user.events.all(:order=>"events.when ASC", :conditions => { :when.gte => Time.now }, :limit => 10)
-    @photos = @user.photos.all(:order=>"created_at DESC", :limit => 8)
   end
   
   def edit

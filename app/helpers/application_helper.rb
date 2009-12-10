@@ -2,7 +2,7 @@
 module ApplicationHelper
   
   def title
-		title = "Game Clan"
+		title = "Game Clan(BETA)"
     if !@guild.nil? && !@guild.new_record?
       #przed = @guild.typ == GT_TEAM ? 'Klan' : 'Gildia'
       title += " - #{@guild.name}"

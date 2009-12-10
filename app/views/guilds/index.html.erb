@@ -1,4 +1,16 @@
 <div class="content center">
+	
+	<div class="box">
+		<div>
+			<% form_tag guilds_path, :id => 'search', :method => :get do %>
+				<%= text_field_tag :keyword, params[:keyword] %>
+				<div class="button white">
+					<%= submit_tag 'Szukaj gildii' %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+	
 	<div class="box">
 		<div>
 			<table>
@@ -10,7 +22,7 @@
 				</thead>
 				<tbody>
 					<% for guild in @guilds %>
-					<tr>
+					<tr class="<%= cycle('normal', 'alt') %>">
 						<td>
 							<%= image_tag guild.logo.url(:mini) %>
 						</td>

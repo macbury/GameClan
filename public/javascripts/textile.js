@@ -30,7 +30,7 @@ mySettings = {
 		{name:'Numeric list', openWith:'(!(# |!|#)!)'}, 
 		{separator:'---------------' },
 		{name:'Picture', replaceWith:'![![Source:!:http://]!]([![Alternative text]!])!'}, 
-		{name:'Link', openWith:'"', closeWith:'([![Title]!])":[![Link:!:http://]!]', placeHolder:'Your text to link here...' },
+		{name:'Link', openWith:'"', closeWith:'":[![Link:!:http://]!]', placeHolder:'Nazwa linku' },
 		{separator:'---------------' },
 		{name:'Quotes', openWith:'bq(!(([![Class]!]))!). '},
 		{name:'Code', openWith:'@', closeWith:'@'},

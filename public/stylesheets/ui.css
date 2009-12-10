@@ -150,8 +150,9 @@ input[type="text"], input[type="password"] {
 	background-position: 0px 0px !important;
 }
 
+.button.white > a, .button.white > input[type="submit"] { color: #333 !important; text-shadow: none !important; }
 .button.right { float: right; }
-.button.white > a { color: #333 !important; text-shadow: none !important; }
+
 
 /* TextFields */
 
@@ -622,3 +623,8 @@ table.posts tr.spacer:last-child { display: none; }
 }
 
 #regulamin > p { margin: 10px 0; }
+
+/* Search Form */
+
+#search { padding: 0 2px !important; }
+#search input[type="text"] { width: 453px; padding: 5px 4px !important; }

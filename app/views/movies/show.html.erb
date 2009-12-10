@@ -40,7 +40,13 @@
 	
 	<div class="box">
 		<div>
-			<h3>Opis</h3>
+			<p class="text_center">
+				<label for="forum_link">Link na forum:</label>
+				<%= text_field_tag 'forum_link', "\"!#{@movie.preview.url(:forum)}(#{@movie.title})!\":#{guild_movie_url(@guild, @movie)}", :readonly=>true %>
+			</p>
+			<p class="text_center">
+				Dodane przez: <%= link_to @movie.user.login, @movie.user %>
+			</p>
 			<%= simple_format @movie.description %>
 			<% if permitted_to? :edit, @movie %>
 			<div class="text_right">

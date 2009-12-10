@@ -15,8 +15,8 @@
   background_color: "100B18" 
 
 'World Of Warcraft Blood Elf':
-  background_image: "1951_bg.jpg"
-  background_color: "000000" 
+  background_image: "1943_bg.jpg"
+  background_color: "74462c" 
 
 'World Of Warcraft Draenei':
   background_image: "1952_bg.jpg"
@@ -37,3 +37,15 @@
 'Halo':
   background_image: "2499_bg.jpg"
   background_color: "000000"
+
+'Stargate Worlds':
+  background_image: "sgw.jpg"
+  background_color: "001227"
+
+'Battlefield 2':
+  background_image: "battlefield.jpg"
+  background_color: "e6e3ab"
+
+'Counter Strike Ghost':
+  background_image: "counterstrike1.jpg"
+  background_color: "0C0D0D"

@@ -9,7 +9,9 @@ class GuildsController < ApplicationController
   # GET /guilds
   # GET /guilds.xml
   def index
-    @guilds = Guild.paginate :per_page => 10, :page => params[:page], :order => "name ASC"
+		conditions = {}
+		conditions = ["guilds.name ILIKE ?", "%#{params[:keyword]}%"] unless params[:keyword].nil?
+    @guilds = Guild.paginate :per_page => 10, :page => params[:page], :order => "name ASC", :conditions => conditions
 
     respond_to do |format|
       format.html # index.html.erb

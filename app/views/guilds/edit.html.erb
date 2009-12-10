@@ -70,7 +70,7 @@
 			
 			<% semantic_form_for @guild, :html => { :multipart => true, :id => 'wyglad', :style=> 'display:none' } do |f| %>
 				<% f.inputs do %>
-					<%= f.input :theme, :as => :select, :collection => THEMES.map { |k,v| [k,k.parameterize] }, :required => false %>
+					<%= f.input :theme, :as => :select, :collection => THEMES.sort { |a,b| a[0] <=> b[0] }.map { |k,v| [k,k.parameterize] }, :required => false %>
 					<% unless @guild.background.nil? %>
 						<div class="text_center">
 							<%= image_tag @guild.background.url(:thumb) %>

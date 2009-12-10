@@ -19,7 +19,7 @@ class Movie < ActiveRecord::Base
                     :url  => "/guild_assets/videos/:id.:extension",
                     :path => ":rails_root/public/guild_assets/videos/:id.:extension"
   
-  has_attached_file :preview, :styles => { :small => "120x90#" },
+  has_attached_file :preview, :styles => { :small => "120x90#", :forum => "320x240#" },
                     :url => "/guild_assets/videos/previews/:style/:id.:extension",
                     :path => ":rails_root/public/guild_assets/videos/previews/:style/:id.:extension"
   
