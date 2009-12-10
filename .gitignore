@@ -1,10 +1,12 @@
 .DS_Store
 .flv
 *.flv
+Capfile
 log/*.log
 tmp/**/*
 config/database.yml
 config/mailer.yml
+config/deploy.rb
 db/*.sqlite3
 public/system/**/*
 public/guild_assets/videos/**/*
