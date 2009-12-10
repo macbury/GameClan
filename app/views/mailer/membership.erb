@@ -1,0 +1,13 @@
+Użytkownik <%= @membership.user.login %> chce dołączyć do gildii.
+
+Profil: <%= @user_url %>
+Game Nick: <%= @membership.game_nick || @membership.user.login %>
+
+Podanie: 
+<%= @membership.reason %>
+
+Dodaj do gildii: 
+<%= @accept_url %>
+
+Usuń podanie:
+<%= @destroy_url %>

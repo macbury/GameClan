@@ -6,13 +6,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title><%= title %></title>
 	<meta name="viewport" content="width=900" />
-	
+	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
 	<%= javascript_include_merged :base %>
 	<%= stylesheet_link_merged :base %>
-	<link rel="stylesheet" type="text/css" href="/javascripts/markitup/skins/simple/style.css" />
-	<link rel="stylesheet" type="text/css" href="/javascripts/markitup/sets/textile/style.css" />
-	<%= javascript_tag "window._token = '#{form_authenticity_token}'" %>
-	<%= javascript_include_tag 'markitup/jquery.markitup.pack.js', 'markitup/sets/textile/set.js' %>
+
 	<% if !@guild.nil? && !@guild.new_record? %>
 		<style type="text/css" media="screen">
 			body { 

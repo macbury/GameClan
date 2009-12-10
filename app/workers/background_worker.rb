@@ -104,4 +104,13 @@ class BackgroundWorker < Workling::Base
     end
   end
 	
+	def deliver_new_membership_notification(options)
+    member = Membership.find(options[:membership_id])
+    moderators = topic.forum.guild.moderators.all
+
+    moderators.each do |moderator|
+      Mailer.deliver_membership(member, moderator)
+    end
+  end
+	
 end

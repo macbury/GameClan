@@ -113,7 +113,7 @@ pl:
         password_confirmation: "Powtórz hasło"
         www: "Strona WWW"
         full_name: "Imie i Nazwisko"
-        terms_of_service: "Regulamin"
+        terms_of_service: "Akceptuje regulamin"
         gg: "Gadu Gadu"
         jabber: "Jabber/Tlen"
         notification_posts: "Wpisach na forum"

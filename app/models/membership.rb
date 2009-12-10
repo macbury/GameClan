@@ -10,10 +10,14 @@ class Membership < ActiveRecord::Base
   
   attr_protected :user_id, :guild_id, :accepted
   
-  def accept!(clean=true)
-    unless clean
-      
-    end
+	after_create :mail_notification
+	
+	def mail_notification
+		BackgroundWorker.asynch_deliver_new_membership_notification(:membership_id => self.id)
+	end
+
+  def accept!(clean=true)    
+		Mailer.deliver_guild_accept(self) unless clean
     self.accepted = true
     save
     self.user.assign_role('Guild-Member')

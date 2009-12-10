@@ -14,6 +14,11 @@
 						<div class="button special">
 							<%= f.submit @post.new_record? ? "Dodaj" : "Zapisz" %>
 						</div>
+						<% unless @post.new_record? %>
+						<div class="button">
+							<%= link_to 'Usuń', [@guild, @forum, @topic, @post], :method => :delete, :confirm => "Czy na pewno?" %>
+						</div>
+						<% end %>
 						<div class="button white">
 							<%= link_to 'Anuluj', @post.new_record? ? guild_forum_path(@guild, @forum) : [@guild, @forum, @topic] %>
 						</div>

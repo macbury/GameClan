@@ -589,3 +589,16 @@ table.posts tr.spacer:last-child { display: none; }
 }
 
 #forum_link { width: 380px; }
+
+/* Register */
+
+#regulamin {
+	border: 1px solid #DDD;
+	height: 150px;
+	font-size: 14px;
+	overflow: auto;
+	margin-bottom: 5px;
+	padding: 0 5px;
+}
+
+#regulamin > p { margin: 10px 0; }

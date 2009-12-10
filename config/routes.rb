@@ -7,7 +7,7 @@ ActionController::Routing::Routes.draw do |map|
   map.register '/register', :controller => 'users', :action => 'new'
   
   map.resources :guilds do |guild|
-    guild.resources :members, :member => { :reason => :get, :accept => :get }, :collection => { :leave => :get }
+    guild.resources :members, :member => { :reason => :get, :accept => :get, :destroy => :any }, :collection => { :leave => :get }
 		guild.resources :photos
     guild.resources :movies
     guild.resources :events
