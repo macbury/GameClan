@@ -43,5 +43,6 @@ class PostsController < ApplicationController
       @guild = Guild.find_by_permalink(params[:guild_id])
       @forum = @guild.forums.find_by_permalink(params[:forum_id])
       @topic = @forum.topics.find_by_permalink(params[:topic_id])
+			@title = ["Forum", @forum.name]
     end
 end

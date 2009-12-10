@@ -2,6 +2,8 @@ class MoviesController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
   before_filter :find_guild
   
+	title "Filmy"
+
   filter_access_to [:create, :new], :attribute_check => true, 
                                     :load_method => lambda { @movie = @guild.movies.new(params[:movie]) }
   filter_access_to [:edit, :destroy, :update], :attribute_check => true,

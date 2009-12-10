@@ -40,6 +40,7 @@
 				<% end %>
 			<% else %>
 				<li><%= link_to "Gildie", guilds_path %></li>
+				<li><%= link_to "Stwórz nową gildię!", new_guild_path %></li>
 			<% end %>
 			<% if logged_in? %>
 				<li class="right"><%= link_to 'Wyloguj', logout_path %></li>

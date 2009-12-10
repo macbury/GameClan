@@ -2,6 +2,8 @@ class EventsController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
   before_filter :find_guild
   
+	title "Kalendarz"
+
   filter_access_to [:create, :new], :attribute_check => true, 
                                     :load_method => lambda { @event = @guild.events.new(params[:event]) }
   filter_access_to [:edit, :destroy, :update], :attribute_check => true,

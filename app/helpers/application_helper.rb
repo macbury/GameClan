@@ -2,12 +2,14 @@
 module ApplicationHelper
   
   def title
+		title = "Game Clan"
     if !@guild.nil? && !@guild.new_record?
-      przed = @guild.typ == GT_TEAM ? 'Klan' : 'Gildia'
-      "#{przed} #{@guild.name}"
-    else
-      "Game Clan"
+      #przed = @guild.typ == GT_TEAM ? 'Klan' : 'Gildia'
+      title += " - #{@guild.name}"
     end
+
+		title += " - #{@title.join(' - ')}" unless @title.nil?
+		return title
   end
   
   def avatar_for(user, size)

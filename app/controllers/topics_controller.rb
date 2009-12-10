@@ -88,6 +88,7 @@ class TopicsController < ApplicationController
     def load_resources
       @guild = Guild.find_by_permalink(params[:guild_id])
       @forum = @guild.forums.find_by_permalink(params[:forum_id])
+			@title = ["Forum", @forum.name]
     end
     
 end

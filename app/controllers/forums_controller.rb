@@ -2,6 +2,8 @@ class ForumsController < ApplicationController
   before_filter :login_required, :except => [:index, :show]
   before_filter :find_guild
   
+	title "Forum"
+
   filter_access_to [:create, :new], :attribute_check => true, 
                                     :load_method => lambda { @forum = @guild.forums.new(params[:forum]) }
   filter_access_to [:show, :edit, :destroy, :update], :attribute_check => true,
@@ -21,7 +23,7 @@ class ForumsController < ApplicationController
   # GET /forums/1.xml
   def show
     @topics = @forum.topics.paginate(:order=>"sticky DESC, updated_at DESC", :include => [:user, :replied_by], :per_page => 20, :page => params[:page])
-
+		@title << @forum.name
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @forum }

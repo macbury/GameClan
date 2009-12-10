@@ -41,9 +41,9 @@ class Guild < ActiveRecord::Base
   validates_attachment_size :background, :less_than => 1.megabytes
   validates_attachment_content_type :background, :content_type => ['image/jpeg', 'image/png']
   
-  has_attached_file :logo, :styles => { :original => "200x200>" },
-                    :url  => "/guild_assets/logos/:id.:extension",
-                    :path => ":rails_root/public/guild_assets/logos/:id.:extension"
+  has_attached_file :logo, :styles => { :original => "200x200>", :mini => "100x100#" },
+                    :url  => "/guild_assets/logos/:style/:id.:extension",
+                    :path => ":rails_root/public/guild_assets/logos/:style/:id.:extension"
 
   #validates_attachment_presence :logo
   validates_attachment_size :logo, :less_than => 1.megabytes

@@ -1,24 +1,29 @@
-<h1>Listing guilds</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Game</th>
-    <th>Server</th>
-  </tr>
-
-<% @guilds.each do |guild| %>
-  <tr>
-    <td><%=h guild.name %></td>
-    <td><%=h guild.game %></td>
-    <td><%=h guild.server %></td>
-    <td><%= link_to 'Show', guild %></td>
-    <td><%= link_to 'Edit', edit_guild_path(guild) %></td>
-    <td><%= link_to 'Destroy', guild, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
-
-<%= link_to 'New guild', new_guild_path %>
+<div class="content center">
+	<div class="box">
+		<div>
+			<table>
+				<thead>
+					<tr>
+						<th width="100px">Logo</th>
+						<th>Gildia</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for guild in @guilds %>
+					<tr>
+						<td>
+							<%= image_tag guild.logo.url(:mini) %>
+						</td>
+						<td>
+							<%= link_to guild.name, guild %><br/>
+							<%= simple_format guild.about %>
+						</td>
+					</tr>
+					<% end %>
+				</tbody>
+			</table>
+			
+			<%= will_paginate @guilds %>
+		</div>
+	</div>
+</div>

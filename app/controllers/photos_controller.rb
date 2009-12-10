@@ -2,6 +2,8 @@ class PhotosController < ApplicationController
 	before_filter :login_required, :except => [:index, :show]
 	before_filter :find_guild
   
+	title "Zdjęcia"
+
   filter_access_to [:create, :new], :attribute_check => true, 
                                     :load_method => lambda { @photo = @guild.photos.new(params[:photo]) }
   filter_access_to [:edit, :destroy, :update], :attribute_check => true,

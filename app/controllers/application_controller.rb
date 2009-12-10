@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
 
   def self.title(name, options = {})
     before_filter(options) do |controller|
-      controller.instance_variable_set('@title', name)
+      controller.instance_variable_set('@title', [name])
     end
   end
   
