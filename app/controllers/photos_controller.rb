@@ -11,7 +11,7 @@ class PhotosController < ApplicationController
   # GET /photos
   # GET /photos.xml
   def index
-    @photos = @guild.photos.paginate :per_page => 10, :page => params[:page], :order => "created_at ASC"
+    @photos = @guild.photos.paginate :per_page => 16, :page => params[:page], :order => "created_at ASC"
 		@photo = @guild.photos.new
 		
     respond_to do |format|
