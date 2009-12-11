@@ -70,7 +70,7 @@ class Guild < ActiveRecord::Base
   end
   
   def isGuildModerator?(user)
-    !self.moderators.find(user.id).nil?
+    !self.moderators.find_by_id(user.id).nil?
   end
   
   def set_theme

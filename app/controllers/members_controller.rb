@@ -31,7 +31,7 @@ class MembersController < ApplicationController
   end
   
   def index
-    @members = @guild.memberships.all(:include => :user,:order => 'memberships.accepted, users.login ASC')
+    @members = @guild.memberships.all(:include => :user,:order => 'memberships.accepted ASC, users.login ASC')
   end
   
   def accept

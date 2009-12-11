@@ -9,6 +9,7 @@
 					<tr>
 						<th width="16px"> </th>
 						<th>Postać</th>
+						<th width="25%">Ranga</th>
 						<th width="25%">Profil</th>
 						<th width="25%">Dołączył(a)</th>
 					</tr>
@@ -20,6 +21,15 @@
 							<%= image_tag member.accepted ? "/images/icons/icon_success.gif" : "/images/icons/icon_error.gif" %>
 						</td>
 						<td><%= link_to member.game_nick, member.stats_link, :target => "_blank" %></td>
+						<td>
+							<% if @guild.isGuildMaster?(member.user) %>
+								Mistrz
+							<% elsif @guild.isGuildModerator?(member.user) %>
+								Moderator
+							<% else %>
+								Użytkownik
+							<% end %>
+						</td>
 						<td><%= link_to member.user.login, member.user %></td>
 						<% unless member.accepted %>
 						<td class="text_center">
