@@ -7,7 +7,7 @@ class MoviesController < ApplicationController
   filter_access_to [:create, :new], :attribute_check => true, 
                                     :load_method => lambda { @movie = @guild.movies.new(params[:movie]) }
   filter_access_to [:edit, :destroy, :update], :attribute_check => true,
-                          :load_method => lambda { @movie = @guild.movies.find_by_permalink(params[:id]) }
+                          :load_method => lambda { @movie = @guild.movies.find_by_permalink!(params[:id]) }
   # GET /movies
   # GET /movies.xml
   def index

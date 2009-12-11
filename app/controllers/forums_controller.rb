@@ -7,7 +7,7 @@ class ForumsController < ApplicationController
   filter_access_to [:create, :new], :attribute_check => true, 
                                     :load_method => lambda { @forum = @guild.forums.new(params[:forum]) }
   filter_access_to [:show, :edit, :destroy, :update], :attribute_check => true,
-                          :load_method => lambda { @forum = @guild.forums.find_by_permalink(params[:id]) }
+                          :load_method => lambda { @forum = @guild.forums.find_by_permalink!(params[:id]) }
   # GET /forums
   # GET /forums.xml
   def index

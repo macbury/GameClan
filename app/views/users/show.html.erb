@@ -26,13 +26,11 @@
 			<% end %>
 			<% unless @user.guild_member.nil? || @user.guild_member.empty? %>
 			<dt>Gildie/Klany:</dt>
-			<dl>
 				<% @guilds.each do |guild| %>
-				<ul>
+				<ul class="reset">
 					<li><%= link_to guild.name, guild %></li>
 				</ul>
 				<% end %>
-			</dl>
 			<% end %>
 		</dl>
 	</div>

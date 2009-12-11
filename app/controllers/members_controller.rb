@@ -2,7 +2,7 @@ class MembersController < ApplicationController
   before_filter :login_required, :except => [:index]
   
   filter_access_to :all, :attribute_check => true,
-                         :load_method => lambda { @guild = Guild.find_by_permalink(params[:guild_id]) }
+                         :load_method => lambda { @guild = Guild.find_by_permalink!(params[:guild_id]) }
   
   def create
     @membership = self.current_user.memberships.new(params[:membership])

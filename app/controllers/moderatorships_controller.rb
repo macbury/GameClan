@@ -2,7 +2,7 @@ class ModeratorshipsController < ApplicationController
   before_filter :login_required
   
   filter_access_to [:destroy, :create], :attribute_check => true,
-                          :load_method => lambda { @guild = Guild.find_by_permalink(params[:guild_id]) }
+                          :load_method => lambda { @guild = Guild.find_by_permalink!(params[:guild_id]) }
                           
   def create
     @members = @guild.members.find(params[:users])

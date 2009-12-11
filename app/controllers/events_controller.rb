@@ -7,7 +7,7 @@ class EventsController < ApplicationController
   filter_access_to [:create, :new], :attribute_check => true, 
                                     :load_method => lambda { @event = @guild.events.new(params[:event]) }
   filter_access_to [:edit, :destroy, :update], :attribute_check => true,
-                          :load_method => lambda { @event = @guild.events.find_by_permalink(params[:id]) }
+                          :load_method => lambda { @event = @guild.events.find_by_permalink!(params[:id]) }
   # GET /events
   # GET /events.xml
   def index

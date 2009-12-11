@@ -17,7 +17,28 @@ class ApplicationController < ActionController::Base
     @current_user ||= self.current_user_session && self.current_user_session.user
     return @current_user
   end
-
+	
+	def local_request?
+		return false
+	end
+	
+	def rescue_action_in_public(exception)
+	  case exception
+	  when ActiveRecord::RecordNotFound
+	    render_404
+		when ActionController::RoutingError
+			render_404
+		when ActionController::UnknownController
+			render_404
+		when ActionController::UnknownAction
+			render_404
+		when RuntimeError
+			render_500
+	  else
+	    super
+	  end
+	end
+	
   protected
 
   def permission_denied
@@ -88,6 +109,16 @@ class ApplicationController < ActionController::Base
   end
   
   def find_guild
-    @guild = Guild.find_by_permalink(params[:guild_id])
+    @guild = Guild.find_by_permalink!(params[:guild_id])
   end
+	
+	def render_404
+		@title = ["Błąd 404", "Nie znaleziono strony"]
+		render :template => "shared/error_404", :layout => 'application', :status => :not_found
+	end
+
+	def render_500
+		@title = ["Błąd 500", "Coś poszło nie tak"]
+		render :template => "shared/error_500", :layout => 'application', :status => :internal_server_error
+	end
 end

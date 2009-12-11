@@ -3,7 +3,7 @@ class GuildsController < ApplicationController
 
   filter_access_to [:create, :new]
   filter_access_to [:show, :edit, :destroy, :update], :attribute_check => true,
-                          :load_method => lambda { @guild = Guild.find_by_permalink(params[:id]) }
+                          :load_method => lambda { @guild = Guild.find_by_permalink!(params[:id])}
   
   before_filter :preload_members, :only => [:edit, :update]
   # GET /guilds
@@ -47,7 +47,7 @@ class GuildsController < ApplicationController
 
   # GET /guilds/1/edit
   def edit
-    
+
   end
 
   # POST /guilds

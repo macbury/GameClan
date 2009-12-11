@@ -237,6 +237,18 @@ input[type="text"]:focus, input[type="password"]:focus, textarea:focus {
 .sidebar dd { margin-left: 20px; }
 .sidebar .button { width: 100%; text-align: center; }
 
+.sidebar a { color: #fff;}
+.sidebar ul { margin: 5px -10px 0px -10px; }
+
+.sidebar ul li a { 
+	color: #fff;
+	padding: 5px 4px 5px 25px;
+	font-size: 9px;
+	display: block;
+}
+
+.sidebar ul li a:hover { background: rgba(255,255,255, 0.2); }
+
 .sidebar > .clan_logo, .sidebar > .avatar_logo {
 	width: 200px;
 	height: 160px;

@@ -4,7 +4,7 @@ class TopicsController < ApplicationController
   
   filter_access_to [:create, :new], :load_method => lambda { @topic = @forum.topics.new(params[:topic]) }, :attribute_check => true
   filter_access_to [:show, :edit, :destroy, :update], :attribute_check => true,
-                          :load_method => lambda { @topic = @forum.topics.find_by_permalink(params[:id]) }
+                          :load_method => lambda { @topic = @forum.topics.find_by_permalink!(params[:id]) }
   # GET /topics/1
   # GET /topics/1.xml
   
@@ -86,8 +86,8 @@ class TopicsController < ApplicationController
   protected
     
     def load_resources
-      @guild = Guild.find_by_permalink(params[:guild_id])
-      @forum = @guild.forums.find_by_permalink(params[:forum_id])
+      @guild = Guild.find_by_permalink!(params[:guild_id])
+      @forum = @guild.forums.find_by_permalink!(params[:forum_id])
 			@title = ["Forum", @forum.name]
     end
     

@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   
   filter_access_to [:new, :create]
   filter_access_to [:edit, :destroy, :update], :attribute_check => true,
-                          :load_method => lambda { @user = User.find_by_login(params[:id]) }
+                          :load_method => lambda { @user = User.find_by_login!(params[:id]) }
   def new
     @user = User.new
   end
