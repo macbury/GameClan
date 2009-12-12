@@ -18,7 +18,7 @@ $(document).ready(function () {
 		$('body').attr('class', $(this).val());
 	});
 	
-	$('a[rel*=facebox]').facebox() 
+	$('a[rel*=facebox]').facebox();
 	
 	setTimeout(function () {
 		$('.flash_notice, .flash_error').slideUp()
