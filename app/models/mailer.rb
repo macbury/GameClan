@@ -50,9 +50,9 @@ class Mailer < ActionMailer::Base
 	
 	def topic(topic, user)
 		setup_email(user)
-		@subject = "[#{topic.guild.name}] Nowy post w wątku: '#{topic.title}'"
-		@body[:topic] = photo
-		@body[:topic_url] = guild_forum_topic_url(topic.guild, topic.forum, topic)
+		@subject = "[#{topic.forum.guild.name}] Nowy post w wątku: '#{topic.title}'"
+		@body[:topic] = topic
+		@body[:topic_url] = guild_forum_topic_url(topic.forum.guild, topic.forum, topic)
 		@body[:user] = user
 		@body[:user_config] = edit_user_url(user)
 	end
