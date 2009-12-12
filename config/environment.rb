@@ -8,7 +8,7 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   config.gem 'searchlogic'
-  config.gem 'authlogic'
+  config.gem 'authlogic', :version => "2.1.1"
   config.gem 'RedCloth', :lib => "redcloth"
   config.gem 'starling'
   config.gem 'rvideo'
