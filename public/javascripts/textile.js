@@ -36,4 +36,4 @@ mySettings = {
 		{name:'Code', openWith:'@', closeWith:'@'},
 		{separator:'---------------' }
 	]
-}
+};
