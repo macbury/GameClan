@@ -42,8 +42,6 @@ Rails::Initializer.run do |config|
   # Run "rake -D time" for a list of tasks for finding time zone names.
   config.time_zone = 'Warsaw'
   
-  config.action_mailer.smtp_settings = YAML.load_file("#{RAILS_ROOT}/config/mailer.yml")
-  
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   config.i18n.default_locale = :pl
