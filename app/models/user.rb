@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => ['image/jpeg', 'image/png']
   
 	attr_protected :roles, :assignments
-  attr_accessor :password, :crop_x, :crop_y, :crop_w, :crop_h, :terms_of_service
+  attr_accessor :crop_x, :crop_y, :crop_w, :crop_h, :terms_of_service
 
   has_many :guilds, :dependent => :destroy
   
