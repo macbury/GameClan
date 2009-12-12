@@ -15,7 +15,8 @@ class Event < ActiveRecord::Base
 	after_create :mail_notification
 	
 	def mail_notification
-		BackgroundWorker.asynch_deliver_event_notification(:event_id => self.id)
+		BackgroundWorker.new.deliver_event_notification(:event_id => self.id)
+		#BackgroundWorker.asynch_deliver_event_notification(:event_id => self.id)
 	end
 	
   def date

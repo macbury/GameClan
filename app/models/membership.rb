@@ -13,7 +13,7 @@ class Membership < ActiveRecord::Base
 	after_create :mail_notification
 	
 	def mail_notification
-		BackgroundWorker.asynch_deliver_new_membership_notification(:membership_id => self.id)
+		BackgroundWorker.new.deliver_new_membership_notification(:membership_id => self.id)
 	end
 
   def accept!(clean=true)    
