@@ -71,7 +71,7 @@ class Mailer < ActionMailer::Base
 		setup_email(membership.user)
 		@subject = "[#{membership.guild.name}] Zostałeś przyjęty do gildii"
 		@body[:membership] = membership
-		@body[:guild_url] = guild_url(membership.guild)
+		@body[:guild_url] = guild_url(membership.guild, :host => "http://game-clan.megiteam.pl/")
 	end
 	
   protected
