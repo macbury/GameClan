@@ -40,12 +40,13 @@
 			<li><%= link_to "Filmy", guild_movies_path(@guild) %></li>
 			<li><%= link_to "Członkowie", guild_members_path(@guild) %></li>
 			<li><%= link_to "Kalendarz", guild_events_path(@guild) %></li>
-				<% if permitted_to? :change, @guild %>
-					<li><%= link_to 'Ustawienia', edit_guild_path(@guild) %></li>
-				<% end %>
+			<% if permitted_to? :change, @guild %>
+				<li><%= link_to 'Ustawienia', edit_guild_path(@guild) %></li>
+			<% end %>
 			<% else %>
 				<li><%= link_to "Gildie", guilds_path %></li>
 				<li><%= link_to "Stwórz nową gildię!", new_guild_path %></li>
+				<li><a href="http://github.com/macbury/GameClan/commits/master">Zmiany</a></li>
 			<% end %>
 			<% if logged_in? %>
 				<li class="right"><%= link_to 'Wyloguj', logout_path %></li>
