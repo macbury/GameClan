@@ -1,4 +1,4 @@
-
+require "smtp_tls"
 ActionMailer::Base.delivery_method = :smtp  
 ActionMailer::Base.raise_delivery_errors = true  
 ActionMailer::Base.default_charset = 'utf-8'
