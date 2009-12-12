@@ -80,7 +80,7 @@ class Mailer < ActionMailer::Base
       @recipients  = "#{user.email}"
       #@subject     = "[mycode] "
       @sent_on     = Time.now
-      @from        = ActionMailer::Base.smtp_settings[:user_name]
+      @from        = ActionMailer::Base.smtp_settings[:from]
       @body[:user] = user
     end
 end
