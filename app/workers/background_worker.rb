@@ -1,5 +1,6 @@
 class BackgroundWorker < Workling::Base
   
+	# Convert movie to flv.
   def convert(options)
     movie = Movie.find(options[:movie_id])
     

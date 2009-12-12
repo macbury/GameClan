@@ -12,7 +12,8 @@ class ApplicationController < ActionController::Base
   
   before_filter :staging_authentication
   before_filter { |c| Authorization.current_user = c.current_user }
-
+	
+	# return current logged user
   def current_user
     @current_user ||= self.current_user_session && self.current_user_session.user
     return @current_user
@@ -53,7 +54,10 @@ class ApplicationController < ActionController::Base
       end
     end
   end
-
+	
+	# Generating nice title
+	# title "New page", :only => [:new, :create]
+	
   def self.title(name, options = {})
     before_filter(options) do |controller|
       controller.instance_variable_set('@title', [name])
@@ -72,15 +76,19 @@ class ApplicationController < ActionController::Base
     end
   end
   
+
+	# return current user session
   def current_user_session
     @current_user_session ||= UserSession.find
     return @current_user_session
   end
-
+	
+	# return true if user is logged in
   def logged_in?
     !self.current_user.nil?
   end
-
+	
+	# return true if user own object
   def own?(obj)
     logged_in? && self.current_user.own?(obj)
   end
