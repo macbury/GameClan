@@ -33,10 +33,8 @@ class ApplicationController < ActionController::Base
 			render_404
 		when ActionController::UnknownAction
 			render_404
-		when RuntimeError
+		else
 			render_500
-	  else
-	    super
 	  end
 	end
 	
