@@ -22,7 +22,7 @@ $(document).ready(function () {
 	
 	setTimeout(function () {
 		$('.flash_notice, .flash_error').slideUp()
-	}, 10000)
+	}, 10000);
 	
 	$('#topic_body, #post_body').markItUp(mySettings, { previewAutoRefresh:false });
 	
