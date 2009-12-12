@@ -22,7 +22,6 @@ class Mailer < ActionMailer::Base
   end
 	
 	def event(event, user)
-		return
 		setup_email(user)
 		@subject = "[#{event.guild.name}] użytkownik #{user.login} dodał nowe wydarzenie"
 		@body[:event] = event
@@ -32,7 +31,6 @@ class Mailer < ActionMailer::Base
 	end
 	
 	def photo(photo, user)
-		return
 		setup_email(user)
 		@subject = "[#{photo.guild.name}] użytkownik #{user.login} dodał nowe zdjęcie"
 		@body[:photo] = photo
@@ -42,7 +40,6 @@ class Mailer < ActionMailer::Base
 	end
 	
 	def movie(movie, user)
-		return
 		setup_email(user)
 		@subject = "[#{photo.guild.name}] użytkownik #{user.login} dodał nowy film"
 		@body[:movie] = movie
@@ -52,7 +49,6 @@ class Mailer < ActionMailer::Base
 	end
 	
 	def topic(topic, user)
-		return
 		setup_email(user)
 		@subject = "[#{topic.guild.name}] Nowy post w wątku: '#{topic.title}'"
 		@body[:topic] = photo
@@ -62,7 +58,6 @@ class Mailer < ActionMailer::Base
 	end
 	
 	def membership(membership, user)
-		return
 		setup_email(user)
 		@subject = "[#{membership.guild.name}] Nowe podanie o wstąpienie do gildii"
 		@body[:membership] = membership
@@ -73,7 +68,6 @@ class Mailer < ActionMailer::Base
 	end
 	
 	def guild_accept(membership)
-		return
 		setup_email(membership.user)
 		@subject = "[#{membership.guild.name}] Zostałeś przyjęty do gildii"
 		@body[:membership] = membership
@@ -88,5 +82,7 @@ class Mailer < ActionMailer::Base
       @sent_on     = Time.now
       @from        = ActionMailer::Base.smtp_settings[:from]
       @body[:user] = user
+			default_url_options[:host] = "http://game-clan.megiteam.pl"
+			
     end
 end
