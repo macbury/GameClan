@@ -61,7 +61,7 @@ class Mailer < ActionMailer::Base
 		setup_email(user)
 		@subject = "[#{membership.guild.name}] Nowe podanie o wstąpienie do gildii"
 		@body[:membership] = membership
-		@body[:accept_url] = accept_guild_member_path(membership.guild, membership)
+		@body[:accept_url] = accept_guild_member_url(membership.guild, membership)
 		@body[:destroy_url] = destroy_guild_member_url(membership.guild, membership)
 		@body[:user_url] = user_url(membership.user)
 		
