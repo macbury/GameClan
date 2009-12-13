@@ -6,7 +6,7 @@
 		<div>
 			<fieldset>
 				<legend>Nowe zdjęcie</legend>
-				<% semantic_form_for([@guild, @photo], :html => { :multipart => true, :target => "upload_frame" }) do |f| %>
+				<% semantic_form_for([@guild, @photo], :html => { :multipart => true }) do |f| %>
 					<% f.inputs do %>
 						<%= f.input :image, :hint => "Rozmiar max. 1 MB" %>
 					
