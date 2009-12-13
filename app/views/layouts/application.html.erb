@@ -37,7 +37,7 @@
 			<li><%= link_to "Kokpit", @guild %></li>
 			<li><%= link_to "Forum", guild_forums_path(@guild) %></li>
 			<li><%= link_to "Zdjęcia", guild_photos_path(@guild) %></li>
-			<li><%= link_to "Filmy", guild_movies_path(@guild) %></li>
+			<li><%#= link_to "Filmy", guild_movies_path(@guild) %></li>
 			<li><%= link_to "Członkowie", guild_members_path(@guild) %></li>
 			<li><%= link_to "Kalendarz", guild_events_path(@guild) %></li>
 			<% if permitted_to? :change, @guild %>

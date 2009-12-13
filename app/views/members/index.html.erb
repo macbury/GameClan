@@ -20,7 +20,12 @@
 						<td class="text_center">
 							<%= image_tag member.accepted ? "/images/icons/icon_success.gif" : "/images/icons/icon_error.gif" %>
 						</td>
-						<td><%= link_to member.game_nick, member.stats_link, :target => "_blank" %></td>
+						<td>
+							<%= link_to member.game_nick, member.stats_link, :target => "_blank" %>
+							<% if permitted_to? :accept, member %>
+								( <%= link_to "Usuń", guild_member_path(@guild, member), :method => :delete, :confirm => "Czy na pewno?" %> )
+							<% end %>
+						</td>
 						<td>
 							<% if @guild.isGuildMaster?(member.user) %>
 								Mistrz
@@ -34,15 +39,9 @@
 						<% unless member.accepted %>
 						<td class="text_center">
 							<% if permitted_to? :accept, member %>
-								<div class="button special">
-									<%= link_to "Akceptuj", accept_guild_member_path(@guild, member) %>
-								</div>
-								<div class="button blue">
-									<%= link_to "Odrzuć", guild_member_path(@guild, member), :method => :delete, :confirm => "Czy na pewno?" %>
-								</div>
-								<div class="button white">
-									<%= link_to "Podanie", reason_guild_member_path(@guild, member), :rel => "facebox" %>
-								</div>
+								<%= link_to "Akceptuj", accept_guild_member_path(@guild, member) %> | 
+								<%= link_to "Odrzuć", guild_member_path(@guild, member), :method => :delete, :confirm => "Czy na pewno?" %> | 
+								<%= link_to "Podanie", reason_guild_member_path(@guild, member), :rel => "facebox" %>
 							<% else %>
 								Oczekuje na akceptację
 							<% end %>

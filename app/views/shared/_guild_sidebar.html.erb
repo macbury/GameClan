@@ -2,14 +2,16 @@
 	<div class="clan_logo" style="background-image: url('<%= @guild.logo.url %>')"></div>
 	<div class="box">
 		
-		<% if logged_in? && !@guild.isGuildMaster?(self.current_user) %>
-		<div class="button special">
-			<% if self.current_user.isGuildMember?(@guild) %>
-				<%= link_to "Opuść", leave_guild_members_path(@guild), :confirm => "Czy napewno chcesz opuścić tą gildie?" %>
-			<% else %>
-				<%= link_to "Dołącz", new_guild_member_path(@guild) %>
+		<% if logged_in? %>
+			<% unless @guild.isGuildMaster?(self.current_user) %>
+				<div class="button special">
+					<% if self.current_user.isGuildMember?(@guild) %>
+						<%= link_to "Opuść", leave_guild_members_path(@guild), :confirm => "Czy na pewno chcesz opuścić tą gildie?" %>
+					<% else %>
+						<%= link_to "Dołącz", new_guild_member_path(@guild) %>
+					<% end %>
+				</div>
 			<% end %>
-		</div>
 		<% else %>
 			<div class="button special">
 				<%= link_to "Dołącz", new_guild_member_path(@guild) %>
