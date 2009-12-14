@@ -18,7 +18,8 @@ class Topic < ActiveRecord::Base
 	after_create :mail_notification
 	
 	def mail_notification
-		BackgroundWorker.new.deliver_topic_notification(:topic_id => self.id)
+		#BackgroundWorker.new.deliver_topic_notification(:topic_id => self.id)
+		BackgroundWorker.asynch_deliver_topic_notification(:topic_id => self.id)
 	end
 
   def to_param

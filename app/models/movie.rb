@@ -27,7 +27,8 @@ class Movie < ActiveRecord::Base
   attr_protected :user_id, :guild_id
 
 	def mail_notification
-		BackgroundWorker.new.deliver_movie_notification(:movie_id => self.id)
+		#BackgroundWorker.new.deliver_movie_notification(:movie_id => self.id)
+		BackgroundWorker.asynch_deliver_movie_notification(:movie_id => self.id)
 	end
 
   def process_clip

@@ -34,4 +34,12 @@ $(document).ready(function () {
 		this.focus();
 		this.select();
 	});
+	
+	$('#new_photo') .attr('target', 'upload_frame')
+									.append("<input type=\"hidden\" name=\"format\" value=\"js\"/>")
+									.submit(function (){
+										$(this).find('*').hide();
+										$(this).append("<img src=\"/images/file_upload.gif\"></img>");
+									});
+	
 });

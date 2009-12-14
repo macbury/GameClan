@@ -17,7 +17,8 @@ class Photo < ActiveRecord::Base
 	after_create :mail_notification
 	
 	def mail_notification
-		BackgroundWorker.new.deliver_photo_notification(:photo_id => self.id)
+		#BackgroundWorker.new.deliver_photo_notification(:photo_id => self.id)
+		BackgroundWorker.asynch_deliver_photo_notification(:photo_id => self.id)
 	end
 	
 	def url(size=nil)
